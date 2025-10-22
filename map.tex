@@ -1,0 +1,241 @@
+\documentclass[a4paper,landscape]{article}
+
+\usepackage[total={27cm,19cm},centering]{geometry}
+
+\usepackage[angle=30, fontsize=.3\paperwidth, text={미완성}, color={[gray]{0.9}}]{draftwatermark}
+
+\usepackage[hangul]{kotex}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing}
+
+\setmainfont{Pretendard}[UprightFont = * Regular, BoldFont = * Bold, ItalicFont = * Thin]
+\setsansfont{Pretendard}[UprightFont = * Bold, BoldFont = * ExtraBold]
+
+\setmainhangulfont{Pretendard}[UprightFont = * Regular, BoldFont = * Bold, ItalicFont = * Thin, InterLatinCJK = 0pt]
+\setsanshangulfont{Pretendard}[UprightFont = * Bold, BoldFont = * ExtraBold, InterLatinCJK = 0pt]
+
+\definecolor{algebradraw}{HTML}{0B5395}
+\definecolor{algebrafill}{HTML}{C8E3FB}
+\definecolor{geometrydraw}{HTML}{0076A3}
+\definecolor{geometryfill}{HTML}{C4EFFF}
+\definecolor{analysisdraw}{HTML}{089CA3}
+\definecolor{analysisfill}{HTML}{C9FAFC}
+\definecolor{probstatdraw}{HTML}{0C9B74}
+\definecolor{probstatfill}{HTML}{CAFBED}
+\definecolor{applicationdraw}{HTML}{55A839}
+\definecolor{applicationfill}{HTML}{E5F4E0}
+\definecolor{discretedraw}{HTML}{7E9632}
+\definecolor{discretefill}{HTML}{EDF3DB}
+
+\newcommand*\subject[4]{{\scriptsize #1{\tiny\;|\;#3\;#4} \\[-2.4ex] \textbf{#2}}} % #1 과목 코드, #2 과목명, #3 개설 학기, #4 강:실:학
+\newcommand*\preview[2]{{\scriptsize #1 \\[-2.4ex] \textbf{#2}}}
+
+\pagestyle{empty}
+
+\begin{document}
+
+{\sffamily\bfseries\LARGE 수리과학과 로드맵}\quad {\small 최근 3년 이내 개설된 과목들의 관계를 나타내었습니다.} \hfill {\small\itshape 제작: 수리과학과 21학번 강우현 (미완성, \today)}\hspace*{0.4cm}
+
+\vfill
+
+\begin{tikzpicture}[
+  x=4.5cm, y=1.1cm,
+  category/.style={anchor=north west, font={\hspace{-.5em}\small\sffamily |~}},
+  basic/.style={rectangle, draw=black!50, fill=white, text width=3.15cm, align=left, anchor=west, decorate},
+  algebra/.style={rectangle, draw=algebradraw, fill=algebrafill, text width=3.15cm, align=left, anchor=west, decorate},
+  geometry/.style={rectangle, draw=geometrydraw, fill=geometryfill, text width=3.15cm, align=left, anchor=west, decorate},
+  analysis/.style={rectangle, draw=analysisdraw, fill=analysisfill, text width=3.15cm, align=left, anchor=west, decorate},
+  probstat/.style={rectangle, draw=probstatdraw, fill=probstatfill, text width=3.15cm, align=left, anchor=west, decorate},
+  application/.style={rectangle, draw=applicationdraw, fill=applicationfill, text width=3.15cm, align=left, anchor=west, decorate},
+  discrete/.style={rectangle, draw=discretedraw, fill=discretefill, text width=3.15cm, align=left, anchor=west, decorate},
+  island/.style={rectangle, text width=3.15cm, align=right, anchor=west, decorate, inner ysep=0pt, font={\scriptsize\itshape}}
+]
+  % Grid
+  %\draw[step=5mm,black!10,thin] (-1,0.5) grid (4,-14.5);
+  
+  % 범례
+  \node[category] at (-1,1) (br) {기초필수};
+  \node[category] at (0,1) (bs) {기초선택};
+  \node[category] at (1,1) (m2) {전공선택 (200번대)};
+  \node[category] at (2,1) (m3) {전공선택 (300번대)};
+  \node[category] at (3,1) (m4) {전공선택 (400번대)};
+  \node[category] at (4,1) (m5) {선택 (석\textperiodcentered 박사)};
+  
+  % 기초필수
+  \node[basic] at (-1,-5) (10001) {\subject{MAS.10001}{미적분학~I}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[basic] at (-1,-6) (10002) {\subject{MAS.10002}{미적분학~II}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[island] at (1,-12) (10001') {\scriptsize\hfill MAS.10001 미적분학~I};
+  \draw (10001'.south east) -- (10001'.north east);
+  
+  % 기초선택
+  \node[basic] at (0,-1) (10009) {\subject{MAS.10009}{선형대수학개론}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[basic] at (0,-0) (10010) {\subject{MAS.10010}{데이터과학을\;위한\;선형대수학}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[basic] at (0,-7) (20001) {\subject{MAS.20001}{응용미분방정식}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[basic] at (0,-8) (20002) {\subject{MAS.20002}{응용해석학}{가을}{3:0:3}};
+  \node[basic] at (0,-9) (20050) {\subject{MAS.20050}{확률및통계}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[island] at (1,-11) (10009') {\scriptsize\hfill MAS.10009 선형대수학개론};
+  \draw (10009'.south east) -- (10009'.north east);
+  
+  % 대수학
+  \node[algebra] at (1,-0) (20010) {\subject{MAS.20010}{정수론\;개론}{봄}{3:0:3}};
+  \node[algebra,very thick] at (1,-1) (20012) {\subject{MAS.20012}{선형대수학}{봄\textperiodcentered 가을}{3:0:3}};
+  \node[algebra,very thick] at (2,-0) (30011) {\subject{MAS.30011}{현대대수학\;I}{봄}{3:2:4}};
+  \node[algebra] at (2,-1) (30012) {\subject{MAS.30012}{현대대수학\;II*}{가을}{3:0:3}};
+  \node[algebra,dashed] at (3,-0) (40011) {\subject{MAS.40011}{대수기하학개론}{가을}{3:0:3}};
+  \node[algebra,dashed] at (3,-1) (40012) {\subject{MAS.40012}{가환대수학\;입문}{격년\;봄}{3:0:3}};
+  \node[algebra,dashed] at (4,-0) (50010) {\subject{MAS.50010}{정수론}{격년\;가을}{3:0:3}};
+  \node[algebra] at (4,-1) (50011) {\subject{MAS.50011}{대수학\;I**}{봄}{3:0:3}};
+  \node[algebra] at (4,-2) (50012) {\subject{MAS.50012}{대수학\;II**}{가을}{3:0:3}};
+  \node[algebra,dashed] at (4,-3) (50013) {\subject{MAS.50013}{호몰로지\;대수학}{격년\;봄}{3:0:3}};
+  
+  % 기하학, 위상수학
+  \node[geometry,very thick] at (2,-3) (30021) {\subject{MAS.30021}{미분기하학개론}{가을}{3:2:4}};
+  \node[geometry,very thick] at (2,-4) (30031) {\subject{MAS.30031}{위상수학}{봄}{3:2:4}};
+  \node[geometry] at (3,-2) (40020) {\subject{MAS.40020}{다양체해석학}{봄}{3:0:3}};
+  \node[geometry] at (3,-3) (40030) {\subject{MAS.40030}{조합적\;위상수학*}{가을}{3:0:3}};
+  \node[geometry,dashed] at (3,-4) (40035) {\subject{MAS.40035}{행렬군론}{봄}{3:0:3}};
+  \node[geometry] at (4,-4) (50020) {\subject{MAS.50020}{미분기하학**}{가을}{3:0:3}};
+  \node[geometry] at (4,-5) (50031) {\subject{MAS.50031}{대수적\;위상수학 I**}{봄}{3:0:3}};
+  \node[geometry] at (4,-6) (50032) {\subject{MAS.50032}{대수적\;위상수학 II**}{가을}{3:0:3}};
+  
+  % 해석학
+  \node[analysis,very thick] at (1,-5) (20041) {\subject{MAS.20041}{해석학\;I}{봄}{3:2:4}};
+  \node[analysis] at (1,-6) (20042) {\subject{MAS.20042}{해석학\;II*}{가을}{3:2:4}};
+  \node[analysis,very thick] at (2,-6) (30041) {\subject{MAS.30041}{복소변수함수론}{봄}{3:0:3}};
+  \node[analysis] at (3,-5) (40040) {\subject{MAS.40040}{편미분방정식개론*}{봄}{3:0:3}};
+  \node[analysis] at (3,-6) (40041) {\subject{MAS.40041}{르베그적분론}{가을}{3:0:3}};
+  \node[analysis,dashed] at (3,-7) (40042) {\subject{MAS.40042}{푸리에\;해석과\;응용}{가을}{3:2:3}};
+  \node[analysis,dashed] at (3,-8) (40043) {\subject{MAS.40043}{상미분방정식과\;동역학계}{격년}{3:0:3}};
+  \node[analysis] at (4,-7) (50040) {\subject{MAS.50040}{실변수함수론**}{봄}{3:0:3}};
+  \node[analysis] at (4,-8) (50041) {\subject{MAS.50041}{복소수함수론**}{가을}{3:0:3}};
+  
+  % 확률론, 통계학
+  \node[probstat] at (2,-9) (30050) {\subject{MAS.30050}{기초확률론}{봄}{3:0:3}};
+  \node[probstat,very thick] at (2,-10) (30055) {\subject{MAS.30055}{수리통계학}{가을}{3:0:3}};
+  \node[probstat] at (3,-9) (40055) {\subject{MAS.40055}{선형모형}{봄}{3:0:3}};
+  \node[probstat,dashed] at (3,-10) (40056) {\subject{MAS.40056}{컴퓨터\;통계방법론}{가을}{3:0:3}};
+  \node[probstat] at (4,-9) (50050) {\subject{MAS.50050}{확률론**}{가을}{3:0:3}};
+  \node[probstat] at (4,-10) (50055) {\subject{MAS.50055}{고급통계학**}{봄}{3:0:3}};
+  \node[probstat,dashed] at (4,-11) (50057) {\subject{MAS.50057}{기계학습및응용}{봄}{3:0:3}};
+  
+  % 응용수학
+  \node[application,dashed] at (2,-11) (30064) {\subject{MAS.30064}{행렬계산과\;응용}{봄}{3:0:3}};
+  \node[application] at (2,-12) (30065) {\subject{MAS.30065}{수치해석학개론}{가을}{3:0:3}};
+  \node[application,dashed] at (2,-13) (30074) {\subject{MAS.30074}{최적화이론}{가을}{3:0:3}};
+  \node[application,dashed] at (3,-11) (40067) {\subject{MAS.40067}{수리생물학개론}{격년\;가을}{3:0:3}};
+  \node[application,dashed] at (3,-12) (40071) {\subject{MAS.40071}{금융수학과\;확률모형}{봄}{3:0:3}};
+  \node[application] at (3,-13) (40073) {\subject{MAS.40073}{수학과\;인공지능개론}{봄}{3:0:3}};
+  \node[application] at (4,-12) (50060) {\subject{MAS.50060}{응용수학의\;방법}{봄}{3:0:3}};
+  \node[application] at (4,-13) (50065) {\subject{MAS.50065}{수치해석학**}{학기\;불규칙}{3:0:3}};
+  
+  % 기초론, 이산수학
+  \node[discrete] at (1,-13) (20070) {\subject{MAS.20070}{논리및집합}{가을}{3:0:3}};
+  \node[discrete] at (1,-14) (20075) {\subject{MAS.20075}{이산수학}{봄}{3:0:3}};
+  \node[discrete] at (3,-14) (40077) {\subject{MAS.40077}{그래프이론개론}{가을}{3:0:3}};
+  \node[discrete,dashed] at (3,-15) (40078) {\subject{MAS.40078}{이산기하}{봄}{3:0:3}};
+  \node[discrete,dashed] at (4,-14) (50075) {\subject{MAS.50075}{조합수학}{봄}{3:0:3}};
+  
+  % Solid Lines
+  \begin{scope}[rounded corners=3pt, arrows = {-Stealth[scale=0.75]}]
+    \draw (10001.south) -- (10002.north);
+    \draw (10001'.east) -- ([shift=({0mm,0mm})]1.875,-12) |- (30074.west);
+    \draw ([shift=({0mm,1mm})]10002.east) -- ([shift=({0mm,1mm})]0.875,-6) |- ([shift=({0mm,1mm})]30021.west);
+    \draw ([shift=({0mm,1mm})]10002.east) -- ([shift=({0mm,1mm})]0.875,-6) |- ([shift=({1mm,1mm})]2.875,-6.5) |- ([shift=({0mm,1mm})]40040.west);
+    \draw (10010) -| (-0.1,-1) -- (10009);
+    \draw (10009') -- (30064.west);
+    \draw (10009') -- ([shift=({0mm,0mm})]1.875,-11) |- (30065.west);
+    \draw (10009') -- ([shift=({0mm,0mm})]1.875,-11) |- (30074.west);
+    \draw (10009') -- ([shift=({0mm,0mm})]1.875,-11) |- ([shift=({-1mm,0mm})]2.875,-11.5) |- (40055);
+    \draw (10009') -- ([shift=({0mm,0mm})]1.875,-11) |- (2.875,-11.5) -| (40067);
+    \draw (10009') -- ([shift=({0mm,0mm})]1.875,-11) |- ([shift=({-1mm,0mm})]2.875,-11.5) |- (40073);
+    \draw (20001) -- (20002);
+    \draw ([shift=({0mm,-1mm})]20001.east) -- ([shift=({1mm,-1mm})]2.875,-7) |- ([shift=({0mm,1mm})]40040.west);
+    \draw ([shift=({0mm,-1mm})]20001.east) -- ([shift=({1mm,-1mm})]2.875,-7) |- ([shift=({0mm,0mm})]40043.west);
+    \draw ([shift=({0mm,-1mm})]20001.east) -- ([shift=({1mm,-1mm})]2.875,-7) |- ([shift=({0mm,1mm})]40067.west);
+    \draw ([shift=({0mm,1mm})]20012.east) -- ([shift=({0mm,1mm})]30012.west);
+    \draw ([shift=({0mm,0mm})]20012.south) |- ([shift=({0mm,0mm})]2.875,-2.5) -| ([shift=({0mm,0mm})]40020.south);
+    \draw ([shift=({0mm,0mm})]20012.south) |- ([shift=({1mm,0mm})]3.875,-2.5) |- ([shift=({0mm,0mm})]50020.west);
+    \draw (20041.south) -- (20042.north);
+    \draw (20041.south) |- (1.875, -5.5) -| ([shift=({0mm,0mm})]30041.north);
+    \draw (20041.south) |- (2.875,-5.5) -| (40041.north);
+    \draw ([shift=({-1mm,0mm})]20042.south) |- ([shift=({0mm,1mm})]40042.west);
+    \draw ([shift=({0mm,1mm})]20042.east) -- ([shift=({-1mm,1mm})]1.875,-6) |- ([shift=({0mm,0mm})]3.875,-4.5) -| ([shift=({0mm,0mm})]50020.south);
+    \draw (20050.east) -- (30050.west);
+    \draw (20050.east) -- (1.875,-9) |- (30055.west);
+    \draw (20050) -| (1.875,-8.5) -| (40055);
+    \draw (20050) -- (1.875,-9) |- ([shift=({-2mm,0mm})]2.875,-10.5) -| ([shift=({0mm,0mm})]40056.south);
+    \draw (20050.east) -- (1.875,-9) |- ([shift=({-2mm,0mm})]2.875,-10.5) -| ([shift=({0mm,0mm})]40067.north);
+    \draw (20075.east) -- (40077.west);
+    \draw (20075.east) -- (2.875,-14) |- (3.875,-13.5) |- (50075.west);
+    \draw ([shift=({-1mm,0mm})]30011.south) -- ([shift=({-1mm,0mm})]30012.north);
+    \draw (30011.east) -- ([shift=({-2mm,0mm})]2.875,0) |- (40030.west);
+    % \draw ([shift=({0mm,0mm})]30011.east) -- ([shift=({-2mm,0mm})]2.875,0) |- ([shift=({-1mm,0mm})]3.875,-3.5) |- (50031.west);
+    \draw ([shift=({0mm,1mm})]30012.east) -- ([shift=({0mm,1mm})]2.875,-1) |- ([shift={(0mm,1mm)}]40011.west);
+    \draw ([shift=({0mm,1mm})]30012.east) -- ([shift=({0mm,1mm})]40012.west);
+    % \draw ([shift=({0mm,0mm})]30012.south) |- ([shift=({1mm,0mm})]3.875,-1.5) |- ([shift=({0mm,1mm})]50010.west);
+    \draw ([shift=({0mm,0mm})]30012.south) |- ([shift=({0mm,0mm})]2.875,-1.5) -| ([shift=({-1mm,0mm})]50011.south);
+    \draw ([shift=({0mm,0mm})]30012.south) |- ([shift=({0mm,0mm})]2.875,-1.5) -| ([shift=({-1mm,0mm})]50012.north);
+    \draw (30021.north) |- ([shift=({0mm,1mm})]40020.west);
+    \draw ([shift=({0mm,1mm})]30031.east) -- ([shift=({-2mm,1mm})]2.875, -4) |- (40030.west);
+    \draw ([shift=({0mm,0mm})]30031.south) |- ([shift=({0mm,0mm})]3.375,-4.5) -| ([shift=({0mm,0mm})]50020.south);
+    \draw ([shift=({1mm,0mm})]30041.south) |- (3.875,-7.5) -| (50041.north);
+    \draw (30055.north) |- (3.325,-9.5) -| (50055.north);
+    \draw ([shift=({0mm,0mm})]40012.east) -- ([shift=({-1mm,0mm})]3.875,-1) |- ([shift=({0mm,1mm})]50010.west);
+    \draw ([shift=({0mm,0mm})]40012.east) -- ([shift=({-1mm,0mm})]3.875,-1) |- (50013.west);
+    \draw (40030.east) -- ([shift=({-1mm,0mm})]3.875,-3) |- (50031.west);
+    \draw (40041.east) -- (3.875,-6) |- (50040.west);
+    \draw (40041.east) -- (3.875,-6) |- (50050.west);
+    \draw (40077.east) -- (50075.west);
+    \draw ([shift=({1mm,0mm})]50011.south) -- ([shift=({1mm,0mm})]50012.north);
+    \draw (50031.south) -- (50032.north);
+  \end{scope}
+  
+  % Dashed lines
+  \begin{scope}[rounded corners=3pt, dashed, dash pattern=on 1.5pt off 1.5pt, arrows={-Stealth[scale=0.75]}]
+    \draw ([shift=({0mm,-1mm})]10001.east) -- ([shift=({0mm,-1mm})]20041.west);
+    \draw ([shift=({0mm,-1mm})]10002.east) -- ([shift=({0mm,-1mm})]20042.west);
+    \draw (10009.east) -- (20012.west);
+    \draw ([shift=({0mm,0mm})]10009.south) -- ([shift=({0mm,0mm})]20001.north);
+    \draw ([shift=({0mm,0mm})]10009.south) |- ([shift=({0mm,-1mm})]30021.west);
+    \draw ([shift=({0mm,0mm})]20002.east) -| ([shift=({-1mm,0mm})]30041.south);
+    \draw ([shift=({0mm,0mm})]20002) -- ([shift=({-1mm,0mm})]2.875,-8) |- ([shift=({0mm,-1mm})]40040.west);
+    \draw (20010) -- (30011);
+    \draw ([shift=({0mm,-1mm})]20012.east) -- ([shift=({-1mm,-1mm})]1.875,-1) |- (30011);
+    \draw (20041.north) |- (30031.west);
+    \draw ([shift=({0mm,-1mm})]20041.east) -- ([shift=({0mm,-1mm})]40040.west);
+    \draw ([shift=({0mm,-1mm})]20042.east) -- ([shift=({1mm,-1mm})]1.875,-6) |- ([shift=({0mm,-1mm})]30021.west);
+    \draw ([shift=({0mm,-1mm})]20042.east) -- ([shift=({0mm,-1mm})]30041.west);
+    \draw ([shift=({1mm,0mm})]20042.south) |- ([shift=({0mm,-1mm})]1.875,-6.5) -| ([shift=({-1mm,0mm})]40041.south);
+    % \draw ([shift=({0mm,-1mm})]30021.south) |- ([shift=({0mm,0mm})]2.875,-3.5) -- ([shift=({0mm,0mm})]3.875,-3.5) -| ([shift=({0mm,0mm})]50020.north);
+    \draw ([shift=({0mm,-1mm})]30031.east) -- ([shift=({2mm,-1mm})]2.875,-4) |- ([shift=({0mm,-1mm})]40011.west);
+    \draw ([shift=({0mm,-1mm})]30031.east) -- ([shift=({2mm,-1mm})]2.875,-4) |- ([shift=({0mm,-1mm})]40012.west);
+    \draw ([shift=({0mm,-1mm})]30031.east) -- ([shift=({2mm,-1mm})]2.875,-4) |- ([shift=({0mm,-1mm})]40020.west);
+    \draw ([shift=({0mm,0mm})]30055.east) -- ([shift=({0mm,0mm})]40056.west);
+    \draw ([shift=({-1mm,0mm})]40011.south) -- ([shift=({-1mm,0mm})]40012.north);
+    \draw ([shift=({1mm,0mm})]40012.north) -- ([shift=({1mm,0mm})]40011.south);
+    \draw ([shift=({1mm,0mm})]40041.south) -- ([shift=({1mm,0mm})]40042.north);
+    \draw[arrows={Stealth[scale=0.75]-}] (50013.east) -- (4.875,-3) |- ([shift=({0mm,-1mm})]50031.east);
+    \draw[arrows={Stealth[scale=0.75]-}] (50013.east) -- (4.875,-3) |- (50032.east);
+  \end{scope}
+  
+  \node[anchor=east] at (-0.1,-0.5) {\footnotesize 대체과목};
+  
+  % 범례
+  \node[anchor=west, text width=3.15cm] at (-1,-8) (legend) {\preview{\strut}{범례}};
+  \draw[decorate] (legend.south east) -- (legend.south west);
+  \node[algebra] at (-1,-9) {\preview{10번대}{대수학}};
+  \node[geometry] at (-1,-10) {\preview{20\~{}30번대}{기하학\textperiodcentered 위상수학}};
+  \node[analysis] at (-1,-11) {\preview{40번대}{해석학}};
+  \node[probstat] at (-1,-12) {\preview{50번대}{확률론\textperiodcentered 통계학}};
+  \node[application] at (-1,-13) {\preview{60\~{}70번대}{응용수학}};
+  \node[discrete] at (-1,-14) {\preview{70번대}{기초론\textperiodcentered 이산수학}};
+  \draw[arrows={-Stealth[scale=0.75]}] (0,-9.8) -- (0.35,-9.8) node[anchor=west] {\scriptsize 선수\;과목: 선행\;과목을\;바탕으로\;후행\;과목의\;수업이\;전개됨};
+  \draw[arrows={-Stealth[scale=0.75]},dashed] (0,-10.2) -- (0.35,-10.2) node[anchor=west] {\scriptsize 참고\;과목: 선행\;과목을\;수강하면\;후행\;과목의\;이해에\;도움이\;됨};
+  \node[anchor = west] at (0,-10.8) {\scriptsize *~심화전공 필수 수강 과목};
+  \node[anchor = west] at (0,-11.2) {\scriptsize **~박사과정자격시험 대상 과목};
+  \node[basic,draw=black] at (0,-12) {\subject{과목\,코드}{과목명}{개설\,학기}{강:실:학}};
+  \node[basic,very thick,draw=black] at (0,-13) {\preview{두꺼운\;테두리:}{7중4택\;필수\;수강\;과목}};
+  \node[basic,dashed,draw=black] at (0,-14) {\preview{점선\;테두리:}{불규칙적\textperiodcentered 격년\;개설\;과목}};
+\end{tikzpicture}
+
+\end{document}
