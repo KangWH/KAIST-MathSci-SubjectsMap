@@ -25,16 +25,13 @@ p + p {
 }
 
 :root {
-  height: 100vh;
   font-family: Pretendard, sans-serif;
 }
 
 body {
   margin: 0;
-  height: 100%;
 
-  display: flex;
-  flex-flow: column nowrap;
+  text-align: center;
 }
 
 header {
@@ -64,9 +61,6 @@ header p {
 
 main {
   padding: 3em 0 2em;
-
-  flex-grow: 1;
-  overflow-y: auto;
 }
 
 footer {
