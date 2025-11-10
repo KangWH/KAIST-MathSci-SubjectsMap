@@ -12,7 +12,7 @@
   <body>
     <header>
       <h1>KAIST 수리과학과 로드맵</h1>
-      <p>최종 업데이트: 2025년 11월 10일</p>
+      <p>최종 업데이트: 2025년 11월 10일 | 베타 버전 <button id="suggestion-button">제안</button></p>
     </header>
     <main>
       <svg id="map-container"></svg>
@@ -25,22 +25,35 @@
     <dialog id="subject-details-dialog">
       <div class="dialog-header">
         <output class="dialog-header-title" form="subject-details-form" name="subjectTitle">(과목 이름)</output>
-        <button class="dialog-header-close-button"></button>
+        <button class="dialog-header-close-button">×</button>
       </div>
       <form class="dialog-body" id="subject-details-form">
-        <div>
+        <div class="field-row">
           <label>과목 코드</label>
           <input type="text" readonly name="code" />
         </div>
-        <div>
+        <div class="field-row">
           <label>과목 구분</label>
           <input type="text" readonly name="type" />
         </div>
-        <div>
+        <div class="field-row">
           <label>강:실:학</label>
           <input type="text" readonly name="credit" />
         </div>
       </form>
+    </dialog>
+
+    <dialog id="suggestion-dialog">
+      <div class="dialog-header">
+        <div class="dialog-header-title">의견이 있으십니까?</div>
+        <button class="dialog-header-close-button">×</button>
+      </div>
+      <div class="dialog-body">
+        <p>선수 과목에 대한 제안 사항이 있다면 내용을<br />
+        <code>kangwh.2003@gmail.com</code>으로 보내 주시기 바랍니다.</p>
+        <hr />
+        <p>선수 과목은 <q>개인적인 배경지식을 배제하고,<br />듣지 않았을 때 현재 과목의 내용을 전혀 이해할 수<br />없는 과목</q>으로 정의합니다. 단, 고등학교 교육 과정<br />상의 내용은 알고 있는 것으로 가정합니다.</p>
+      </div>
     </dialog>
 
     <script src="js/subject.js"></script>

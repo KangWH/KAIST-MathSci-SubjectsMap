@@ -25,6 +25,15 @@ dialog {
   padding: 0 1em;
 }
 
+.field-row + .field-row {
+  margin-top: .5em;
+}
+
+.field-row label {
+  width: 6em;
+  display: inline-block;
+}
+
 .dialog-footer {
   padding: 1em 1em 0;
 }

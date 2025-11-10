@@ -36,6 +36,7 @@ class MainData {
     const BOX_HEIGHT = 3;
     const BOX_SEPARATION = 1;
     const UNIT = 'rem';
+    const COMP_UNIT_VAL = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
     const BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
     const BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
@@ -57,7 +58,7 @@ class MainData {
     marker.setAttribute("orient", "auto");
     const polygon = document.createElementNS(svgns, "polygon");
     polygon.setAttribute("points", "0 0, 8 3, 0 6");
-    polygon.setAttribute("fill", "blue");
+    polygon.setAttribute("fill", "black ");
     marker.append(polygon);
     defs.append(marker);
     container.append(defs);
@@ -137,20 +138,36 @@ class MainData {
           line.setAttribute("y2", (BLOCK_HEIGHT * (row + 0.5)) + UNIT);
           line.setAttribute("marker-end", "url(#arrow)");
 
-          /* 좌우로 이웃한 경우 */
+          /* 상하로 이웃한 경우 */
           if (sourceColumn === column && sourceRow - row === -1) {
             line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 1) - BOX_SEPARATION) + UNIT);
             line.setAttribute("y2", (BLOCK_HEIGHT * (row) + BOX_SEPARATION) + UNIT);
+            arrowGroup.appendChild(line);
           } else if (sourceColumn === column && sourceRow - row === 1) {
             line.setAttribute("y1", (BLOCK_HEIGHT * (sourceColumn) - BOX_SEPARATION) + UNIT);
             line.setAttribute("y2", (BLOCK_HEIGHT * (column + 1) + BOX_SEPARATION) + UNIT);
+            arrowGroup.appendChild(line);
+          }
+          /* 이웃한 열에 속한 경우 */
+          else if (sourceColumn - column === -1) {
+            const polyLine = document.createElementNS(svgns, 'polyline');
+            polyLine.classList.add('subject-arrow');
+            polyLine.id = sourceSubject + ':' + code;
+            const points = [];
+            points.push([BLOCK_WIDTH * (sourceColumn + 1) - BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5)]);
+            points.push([BLOCK_WIDTH * column, BLOCK_HEIGHT * (sourceRow + .5)]);
+            points.push([BLOCK_WIDTH * column, BLOCK_HEIGHT * (row + .5)]);
+            points.push([BLOCK_WIDTH * (column) + BOX_SEPARATION, BLOCK_HEIGHT * (row + .5)]);
+            polyLine.setAttribute('points', points.map((x) => x.map((x) => x * COMP_UNIT_VAL).join(',')).join(' '));
+            polyLine.setAttribute("marker-end", "url(#arrow)");
+            arrowGroup.appendChild(polyLine);
           }
           /* 그 외 */
           else if (sourceColumn < column) {
             line.setAttribute("x1", (BLOCK_WIDTH * (sourceColumn + 1) - BOX_SEPARATION) + UNIT);
             line.setAttribute("x2", (BLOCK_WIDTH * (column) + BOX_SEPARATION) + UNIT);
+            arrowGroup.appendChild(line);
           }
-          arrowGroup.appendChild(line);
         }
       }
     }

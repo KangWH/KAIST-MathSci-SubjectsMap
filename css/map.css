@@ -35,16 +35,14 @@
   }
 
   & .subject-arrow {
-    stroke: blue;
+    fill: transparent;
+    stroke: black;
     stroke-width: 1px;
 
     transition: stroke .2s, opacity .2s;
 
     &.inactive {
       opacity: 0;
-    }
-    &.active {
-      stroke: black;
     }
   }
 }
