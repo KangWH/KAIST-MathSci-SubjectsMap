@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>KAIST 수리과학과 로드맵</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/map.css" />
+    <link rel="stylesheet" href="css/dialog.css" />
+  </head>
+  <body>
+    <header>
+      <h1>KAIST 수리과학과 로드맵</h1>
+      <p>최종 업데이트: 2025년 11월 10일</p>
+    </header>
+    <main>
+      <svg id="map-container"></svg>
+    </main>
+    <footer>
+      <p>Copyright 2023&ndash;2025 Woohyun Kang. All rights reserved.</p>
+    </footer>
+
+    <dialog id="subject-details-dialog">
+      <div class="dialog-header">
+        <output class="dialog-header-title" form="subject-details-form" name="subjectTitle">(과목 이름)</output>
+        <button class="dialog-header-close-button"></button>
+      </div>
+      <form class="dialog-body" id="subject-details-form">
+        <div>
+          <label>과목 코드</label>
+          <input type="text" readonly name="code" />
+        </div>
+        <div>
+          <label>과목 구분</label>
+          <input type="text" readonly name="type" />
+        </div>
+        <div>
+          <label>강:실:학</label>
+          <input type="text" readonly name="credit" />
+        </div>
+      </form>
+    </dialog>
+
+    <script src="js/subject.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/init.js"></script>
+  </body>
+</html>

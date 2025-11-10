@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+:root {
+  height: 100vh;
+  font-family: Pretendard, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+header {
+  padding-inline: 1em;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#map-container {
+  margin: auto;
+  /* width: 100%; */
+}

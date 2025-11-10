@@ -1,0 +1,30 @@
+dialog {
+  padding: 1em 0;
+
+  &[open] { display: flex; }
+  flex-flow: column nowrap;
+
+  border: none;
+  border-radius: 1em;
+}
+
+.dialog-header {
+  padding: 0 1em 1em;
+
+  display: flex;
+  flex-flow: row nowrap;
+}
+.dialog-header-title {
+  flex-grow: 1;
+  
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.dialog-body {
+  padding: 0 1em;
+}
+
+.dialog-footer {
+  padding: 1em 1em 0;
+}

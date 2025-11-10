@@ -1,0 +1,50 @@
+#map-container {
+  & .subject-container {
+    transition: opacity .2s;
+
+    &.inactive {
+      opacity: 0.3;
+    }
+  }
+
+  & .subject-box {
+    width: 12rem;
+    height: 3rem;
+
+    fill: #EEE;
+    stroke: #444;
+    stroke-width: 2px;
+  }
+
+  & .subject-text {
+    dominant-baseline: middle;
+    text-anchor: middle;
+  }
+
+  & .subject-text-code {
+    font-size: .8em;
+  }
+
+  & .subject-text-name {
+    font-weight: 700;
+  }
+
+  & .subject-text-supplementary {
+    font-weight: 300;
+    font-size: .8em;
+  }
+
+  & .subject-arrow {
+    stroke: blue;
+    stroke-width: 1px;
+
+    transition: stroke .2s, opacity .2s;
+
+    &.inactive {
+      opacity: 0;
+    }
+    &.active {
+      stroke: black;
+    }
+  }
+}
