@@ -1,3 +1,5 @@
+const SUBJECT_TYPES = ['기초필수', '기초선택', '전공필수', '전공선택', '교양필수', '인문사회선택', '공통필수', '선택(석/박사)', '자유선택', '개별연구', '졸업연구', '논문연구', '인턴십', '기타'];
+
 class Subject {
   constructor (code, type, nameKR, nameEN, credit) {
     this.code = code;
@@ -5,6 +7,7 @@ class Subject {
     this.nameKR = nameKR;
     this.nameEN = nameEN;
     this.credit = credit;
+    this.category = 0;
 
     this.prerequisites = new Set();
     this.history = [];
@@ -13,6 +16,10 @@ class Subject {
   addPrerequisite = (code) => {
     this.prerequisites.add(code);
     return this;
+  }
+
+  setCategory = (id) => {
+    this.category = id;
   }
 
   showDetails = () => {
@@ -29,6 +36,7 @@ class Subject {
 class MainData {
   constructor () {
     this.subjects = {};
+    this.categories = ['기타'];
   }
 
   drawMap = () => {
@@ -72,17 +80,19 @@ class MainData {
     container.append(arrowGroup);
 
     for (let code of codes) {
-      // 일단 테스트용으로 하드코딩
+      // 현재 과목 정보
+      const subject = this.subjects[code];
+
+      // 행과 열 구하기 --- 일단 테스트용으로 하드코딩
+      // const column = subject.type.includes('기초') ? 0 : Number(code.charAt(4)) - 1;
+      // const column = subject.type === '기초필수' ? 0 : subject.type === '기초선택' ? 1 : Number(code.charAt(4));
       const column = Number(code.charAt(4)) - 1;
       if (columnData[column] === undefined) {
         columnData[column] = [];
-      }
+      }  
       const row = columnData[column].length;
       columnData[column].push(code);
       mapData[code] = {row: row, column: column};
-
-      // 현재 과목 정보
-      const subject = this.subjects[code];
 
       // 컨테이너 그룹
       const g = document.createElementNS(svgns, 'g');
@@ -91,6 +101,7 @@ class MainData {
 
       const rect = document.createElementNS(svgns, "rect");
       rect.classList.add('subject-box');
+      rect.classList.add(`category${subject.category}`);
       rect.setAttribute("x", (BLOCK_WIDTH * column + BOX_SEPARATION) + UNIT);
       rect.setAttribute("y", (BLOCK_HEIGHT * row + BOX_SEPARATION) + UNIT);
       g.appendChild(rect);
@@ -148,6 +159,21 @@ class MainData {
             line.setAttribute("y2", (BLOCK_HEIGHT * (column + 1) + BOX_SEPARATION) + UNIT);
             arrowGroup.appendChild(line);
           }
+          /* 같은 열이지만 이웃하진 않은 경우 */
+          else if (sourceColumn === column) {
+            const polyLine = document.createElementNS(svgns, 'polyline');
+            polyLine.classList.add('subject-arrow');
+            polyLine.id = sourceSubject + ':' + code;
+            const points = [];
+            points.push([BLOCK_WIDTH * column + BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5)]);
+            points.push([BLOCK_WIDTH * column, BLOCK_HEIGHT * (sourceRow + .5)]);
+            points.push([BLOCK_WIDTH * column, BLOCK_HEIGHT * (row + .5)]);
+            points.push([BLOCK_WIDTH * column + BOX_SEPARATION, BLOCK_HEIGHT * (row + .5)]);
+            polyLine.setAttribute('points', points.map((x) => x.map((x) => x * COMP_UNIT_VAL).join(',')).join(' '));
+            polyLine.setAttribute("marker-end", "url(#arrow)");
+            arrowGroup.appendChild(polyLine);
+          }
+          /* 왼쪽 행 -> 오른쪽 행 */
           else if (sourceColumn < column) {
             const polyLine = document.createElementNS(svgns, 'polyline');
             polyLine.classList.add('subject-arrow');
@@ -233,6 +259,15 @@ class MainData {
   addSubject = (subject) => {
     this.subjects[subject.code] = subject;
     return this;
+  }
+
+  addCategory = (name) => {
+    if (this.categories.includes(name))
+      return this.categories.indexOf(name);
+    else {
+      this.categories.push(name);
+      return this.categories.length - 1;
+    }
   }
 }
 
