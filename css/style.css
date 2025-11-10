@@ -30,8 +30,6 @@ p + p {
 
 body {
   margin: 0;
-
-  text-align: center;
 }
 
 header {
@@ -61,6 +59,8 @@ header p {
 
 main {
   padding: 3em 0 2em;
+
+  text-align: center;
 }
 
 footer {

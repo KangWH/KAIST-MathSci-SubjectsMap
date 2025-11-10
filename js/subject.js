@@ -148,8 +148,7 @@ class MainData {
             line.setAttribute("y2", (BLOCK_HEIGHT * (column + 1) + BOX_SEPARATION) + UNIT);
             arrowGroup.appendChild(line);
           }
-          /* 이웃한 열에 속한 경우 */
-          else if (sourceColumn - column === -1) {
+          else if (sourceColumn < column) {
             const polyLine = document.createElementNS(svgns, 'polyline');
             polyLine.classList.add('subject-arrow');
             polyLine.id = sourceSubject + ':' + code;
@@ -162,7 +161,7 @@ class MainData {
             polyLine.setAttribute("marker-end", "url(#arrow)");
             arrowGroup.appendChild(polyLine);
           }
-          /* 그 외 */
+          /* 그 외: 일단은 사선으로 그림 */
           else if (sourceColumn < column) {
             line.setAttribute("x1", (BLOCK_WIDTH * (sourceColumn + 1) - BOX_SEPARATION) + UNIT);
             line.setAttribute("x2", (BLOCK_WIDTH * (column) + BOX_SEPARATION) + UNIT);
