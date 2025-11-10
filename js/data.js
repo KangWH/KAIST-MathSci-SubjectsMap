@@ -20,6 +20,7 @@ mas20002.addPrerequisite('MAS.20001');
 mainData.addSubject(mas20002);
 
 const mas20050 = new Subject('MAS.20050', '기초선택', '확률및통계', 'Prob&Stat?', '3:0:3');
+mas20050.addPrerequisite('MAS.10002');
 mainData.addSubject(mas20050);
 
 // 2학년 전공선택
@@ -68,6 +69,7 @@ mainData.addSubject(mas30050);
 
 const mas30055 = new Subject('MAS.30055', '전공선택', '수리통계학', 'Prob?', '3:0:3');
 mas30055.addPrerequisite('MAS.20050');
+mas30055.addPrerequisite('MAS.20041');
 mainData.addSubject(mas30055);
 
 const mas30064 = new Subject('MAS.30064', '전공선택', '행렬계산과 응용', 'Mat?', '3:0:3');
@@ -93,6 +95,7 @@ mas40012.addPrerequisite('MAS.30012');
 mainData.addSubject(mas40012);
 
 const mas40020 = new Subject('MAS.40020', '전공선택', '다양체해석학', 'Analysis on Manifolds', '3:0:3');
+mas40020.addPrerequisite('MAS.20012');
 mas40020.addPrerequisite('MAS.30021');
 mainData.addSubject(mas40020);
 
@@ -118,6 +121,7 @@ mainData.addSubject(mas40042);
 
 const mas40043 = new Subject('MAS.40043', '전공선택', '상미분방정식과 동역학계', '', '3:0:3');
 mas40043.addPrerequisite('MAS.20001');
+mas40043.addPrerequisite('MAS.20041');
 mainData.addSubject(mas40043);
 
 const mas40055 = new Subject('MAS.40055', '전공선택', '선형모형', '', '3:0:3');
@@ -134,11 +138,10 @@ mas40067.addPrerequisite('MAS.20001');
 mas40067.addPrerequisite('MAS.20050');
 mainData.addSubject(mas40067);
 
-const mas40071 = new Subject('MAS.40071', '전공선택', '금융수학과 확률모형', '', '3:0:3');
-mainData.addSubject(mas40071);
-
 const mas40073 = new Subject('MAS.40073', '전공선택', '수학과 인공지능개론', '', '3:0:3');
 mas40073.addPrerequisite('MAS.10009');
+mas40073.addPrerequisite('MAS.20050');
+mas40073.addPrerequisite('MAS.20041');
 mainData.addSubject(mas40073);
 
 const mas40077 = new Subject('MAS.40077', '전공선택', '그래프이론개론', '', '3:0:3');
