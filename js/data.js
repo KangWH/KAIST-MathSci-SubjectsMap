@@ -72,6 +72,7 @@ mainData.addSubject(mas30012);
 const mas30021 = new Subject('MAS.30021', '전공선택', '미분기하학개론', 'Introduction to Differential Geometry', '3:2:4');
 mas30021.setCategory(기하위상);
 mas30021.addStyle('important');
+mas30021.addPrerequisite('MAS.10009');
 mas30021.addPrerequisite('MAS.20041');
 mainData.addSubject(mas30021);
 
@@ -165,6 +166,7 @@ mainData.addSubject(mas40043);
 const mas40055 = new Subject('MAS.40055', '전공선택', '선형모형', 'Linear Model', '3:0:3');
 mas40055.setCategory(확률통계);
 mas40055.addPrerequisite('MAS.10009');
+mas40055.addPrerequisite('MAS.20050');
 mainData.addSubject(mas40055);
 
 const mas40056 = new Subject('MAS.40056', '전공선택', '컴퓨터 통계방법론', 'Statistical Methods with Computer', '3:0:3');
