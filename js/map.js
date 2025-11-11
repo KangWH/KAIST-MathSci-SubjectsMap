@@ -136,6 +136,9 @@ MainData.prototype.drawMap = function (options) {
     const row = Number(rowId);
     const string = categoryData[options.grouping][rowId];
 
+    if (!options.showgraduate && string.includes('50000'))
+      break;
+
     const indicator = document.createElementNS(SVGNS, 'rect');
     indicator.setAttribute('x', (BLOCK_WIDTH * row + BOX_SEPARATION) + UNIT);
     indicator.setAttribute('y', BOX_SEPARATION + UNIT);
@@ -156,6 +159,8 @@ MainData.prototype.drawMap = function (options) {
 
   for (let code of codes) {
     const subject = this.subjects[code];
+    if (!options.showgraduate && code.split('.')[1].charAt(0) === '5')
+      continue;
 
     // 행과 열 구하기 --- 일단 테스트용으로 하드코딩
     const column = getColumn[options.grouping](subject);

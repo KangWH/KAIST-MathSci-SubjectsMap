@@ -1,5 +1,6 @@
 const options = {
   grouping: 'onlygrades',
+  showgraduate: false,
 };
 
 const getColumn = {
@@ -37,6 +38,7 @@ document.getElementById('options-form').addEventListener('change', (e) => {
   const form = e.currentTarget;
 
   options.grouping = form.grouping.value;
+  options.showgraduate = form.showgraduate.checked;
 
   mainData.drawMap(options);
 });
