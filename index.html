@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/resposive.css" />
     <link rel="stylesheet" href="css/map.css" />
     <link rel="stylesheet" href="css/palette1.css" />
     <link rel="stylesheet" href="css/dialog.css" />
@@ -18,7 +19,7 @@
     <main>
       <svg id="map-container"></svg>
     </main>
-    <footer>
+    <footer class="desktop-only">
       <p>© 2023&ndash;2025 Woohyun Kang. All rights reserved.</p>
       <p><a href="https://github.com/KangWH/KAIST-MathSci-SubjectsMap">GitHub 저장소</a>에서 주의사항을 확인하십시오.</p>
     </footer>
@@ -42,6 +43,9 @@
           <input type="text" readonly name="credit" />
         </div>
       </form>
+      <div class="dialog-footer">
+        <button type="button" form="subject-details-form" name="gotoOTL">OTL에서 보기 &nearrow;</button>
+      </div>
     </dialog>
 
     <dialog id="suggestion-dialog">

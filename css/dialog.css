@@ -36,4 +36,9 @@ dialog {
 
 .dialog-footer {
   padding: 1em 1em 0;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  gap: .5rem;
 }
