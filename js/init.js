@@ -1,4 +1,4 @@
-mainData.drawMap();
+mainData.drawMap(options);
 
 document.querySelectorAll('dialog').forEach((dialog) => {
   const closeButton = dialog.querySelector('button.dialog-header-close-button');
@@ -17,6 +17,10 @@ document.getElementById('suggestion-button').addEventListener('click', (e) => {
   document.getElementById('suggestion-dialog').showModal();
 });
 
+document.getElementById('options-button').addEventListener('click', (e) => {
+  document.getElementById('options-dialog').showModal();
+});
+
 window.addEventListener('resize', (e) => {
-  mainData.drawMap();
+  mainData.drawMap(options);
 });

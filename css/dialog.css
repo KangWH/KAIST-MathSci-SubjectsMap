@@ -30,7 +30,13 @@ dialog {
 }
 
 .field-row label {
+  margin-top: .5em;
+  display: block;
+}
+.field-row label:first-child {
+  margin: 0;
   width: 6em;
+  
   display: inline-block;
 }
 

@@ -55,11 +55,15 @@
     stroke: black;
     stroke-width: 1px;
     marker-end: url(#arrow);
+    opacity: 0.4;
 
     transition: stroke .2s, opacity .2s;
 
     &.inactive {
       opacity: 0;
+    }
+    &.active {
+      opacity: 1;
     }
   }
 }

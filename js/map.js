@@ -10,7 +10,7 @@ const UNIT = 'rem';
 const COMP_UNIT_VAL = parseFloat(getComputedStyle(document.documentElement).fontSize);
 const BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
 const BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
-const CATEGORY_BLOCK_HEIGHT = 2 * BOX_SEPARATION + CATEGORY_HEIGHT;
+const CATEGORY_BLOCK_HEIGHT = BOX_SEPARATION + CATEGORY_HEIGHT;
 
 /* 현재 과목의 정보를 그리는 함수 */
 Subject.prototype.drawNode = function () {
@@ -114,7 +114,7 @@ const drawArrow = (nodeData, source, target) => {
 };
 
 /* 전체 맵을 그리는 함수 */
-MainData.prototype.drawMap = function () {
+MainData.prototype.drawMap = function (options) {
   const container = document.getElementById('map-container');
 
   /* 내용 초기화 */
@@ -132,15 +132,9 @@ MainData.prototype.drawMap = function () {
   const arrowData = [];
 
   /* 분류 */
-  const categoryInfo = {
-    0: '10000번대',
-    1: '20000번대',
-    2: '30000번대',
-    3: '40000번대',
-  };
-  for (let rowId in categoryInfo) {
+  for (let rowId in categoryData[options.grouping]) {
     const row = Number(rowId);
-    const string = categoryInfo[rowId];
+    const string = categoryData[options.grouping][rowId];
 
     const indicator = document.createElementNS(SVGNS, 'rect');
     indicator.setAttribute('x', (BLOCK_WIDTH * row + BOX_SEPARATION) + UNIT);
@@ -164,9 +158,10 @@ MainData.prototype.drawMap = function () {
     const subject = this.subjects[code];
 
     // 행과 열 구하기 --- 일단 테스트용으로 하드코딩
+    const column = getColumn[options.grouping](subject);
     // const column = subject.type.includes('기초') ? 0 : Number(code.charAt(4)) - 1;
     // const column = subject.type === '기초필수' ? 0 : subject.type === '기초선택' ? 1 : Number(code.charAt(4));
-    const column = Number(code.charAt(4)) - 1;
+    // const column = Number(code.charAt(4)) - 1;
     if (columnData[column] === undefined) {
       columnData[column] = [];
     }  
@@ -244,11 +239,12 @@ MainData.prototype.showPrerequisites = function (code, recursive = false) {
 
   const arrows = svg.querySelectorAll('.subject-arrow');
   for (let arrow of arrows) {
-    const targetCode = arrow.id.split(':')[1];
-    if (targetCode === code) {
+    const [source, target] = arrow.id.split(':');
+    if (target === code) {
       arrow.classList.remove('inactive');
       arrow.classList.add('active');
-    }
+    } else if (source === code && !recursive)
+      arrow.classList.remove('inactive');
   }
 
   for (let subtarget of target.prerequisites)

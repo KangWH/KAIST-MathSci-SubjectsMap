@@ -196,3 +196,81 @@ mainData.addSubject(mas40077);
 const mas40078 = new Subject('MAS.40078', '전공선택', '이산기하', 'Discrete Geometry', '3:0:3');
 mas40078.setCategory(이산);
 mainData.addSubject(mas40078);
+
+// 석사 1학년
+const mas50001 = new Subject('MAS.50001', '선택', '공학자를 위한 응용해석과 확률', 'Applied Analysis and Probability for Engineers', '3:0:3');
+mainData.addSubject(mas50001);
+
+const mas50010 = new Subject('MAS.50010', '선택', '정수론', 'Number Theory', '3:0:3');
+mas50010.setCategory(대수);
+mas50010.addPrerequisite('MAS.40012');
+mainData.addSubject(mas50010);
+
+const mas50011 = new Subject('MAS.50011', '선택', '대수학 I', 'Algebra I', '3:0:3');
+mas50011.setCategory(대수);
+mas50011.addPrerequisite('MAS.30012');
+mainData.addSubject(mas50011);
+
+const mas50012 = new Subject('MAS.50012', '선택', '대수학 II', 'Algebra II', '3:0:3');
+mas50012.setCategory(대수);
+mas50012.addPrerequisite('MAS.50011');
+mainData.addSubject(mas50012);
+
+const mas50013 = new Subject('MAS.50013', '선택', '호몰로지 대수학', 'Homological Algebra', '3:0:3');
+mas50013.setCategory(대수);
+mas50013.addPrerequisite('MAS.40012');
+mainData.addSubject(mas50013);
+
+const mas50020 = new Subject('MAS.50020', '선택', '미분기하학', 'Differential Geometry', '3:0:3');
+mas50020.setCategory(기하위상);
+mas50020.addPrerequisite('MAS.20012');
+mas50020.addPrerequisite('MAS.30031');
+mainData.addSubject(mas50020);
+
+const mas50031 = new Subject('MAS.50031', '선택', '대수적 위상수학 I', 'Algebraic Topology I', '3:0:3');
+mas50031.setCategory(기하위상);
+mas50031.addPrerequisite('MAS.40030');
+mainData.addSubject(mas50031);
+
+const mas50032 = new Subject('MAS.50032', '선택', '대수적 위상수학 II', 'Algebraic Topology II', '3:0:3');
+mas50032.setCategory(기하위상);
+mas50032.addPrerequisite('MAS.50031');
+mainData.addSubject(mas50032);
+
+const mas50040 = new Subject('MAS.50040', '선택', '실변수함수론', 'Real Analysis', '3:0:3');
+mas50040.setCategory(해석);
+mas50040.addPrerequisite('MAS.40041');
+mainData.addSubject(mas50040);
+
+const mas50041 = new Subject('MAS.50041', '선택', '복소수함수론', 'Complex Function Theory', '3:0:3');
+mas50041.setCategory(해석);
+mas50041.addPrerequisite('MAS.30041');
+mainData.addSubject(mas50041);
+
+const mas50050 = new Subject('MAS.50050', '선택', '확률론', 'Probability Theory', '3:0:3');
+mas50050.setCategory(확률통계);
+mas50050.addPrerequisite('MAS.40041');
+mainData.addSubject(mas50050);
+
+const mas50055 = new Subject('MAS.50055', '선택', '고급통계학', 'Advanced Statistics', '3:0:3');
+mas50055.setCategory(확률통계);
+mas50055.addPrerequisite('MAS.30055');
+mainData.addSubject(mas50055);
+
+const mas50057 = new Subject('MAS.50057', '선택', '기계학습및응용', 'Theory and Application of Machine Learning', '3:0:3');
+mas50057.setCategory(확률통계);
+mainData.addSubject(mas50057);
+
+// 2023년 이후 개설된 적 없음
+// const mas50060 = new Subject('MAS.50060', '선택', '응용수학의 방법', 'Methods of Applied Mathematics', '3:0:3');
+// mas50060.setCategory(응용);
+// mainData.addSubject(mas50060);
+
+const mas50065 = new Subject('MAS.50065', '선택', '수치해석학', 'Numerical Analysis', '3:0:3');
+mas50065.setCategory(응용);
+mainData.addSubject(mas50065);
+
+const mas50075 = new Subject('MAS.50075', '선택', '조합수학', 'Combinatorics', '3:0:3');
+mas50075.setCategory(이산);
+mas50075.addPrerequisite('MAS.20075');
+mainData.addSubject(mas50075);
