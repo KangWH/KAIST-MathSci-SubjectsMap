@@ -1,6 +1,7 @@
 const SVGNS = 'http://www.w3.org/2000/svg';
 
 /* 도형 관련 상수 --- map.css를 수정하면 여기에도 업데이트 */
+const CATEGORY_HEIGHT = 1;
 const BOX_WIDTH = 10;
 const BOX_HEIGHT = 3;
 const BOX_SEPARATION = 1;
@@ -9,6 +10,7 @@ const UNIT = 'rem';
 const COMP_UNIT_VAL = parseFloat(getComputedStyle(document.documentElement).fontSize);
 const BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
 const BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
+const CATEGORY_BLOCK_HEIGHT = 2 * BOX_SEPARATION + CATEGORY_HEIGHT;
 
 /* 현재 과목의 정보를 그리는 함수 */
 Subject.prototype.drawNode = function () {
@@ -53,6 +55,7 @@ Subject.prototype.drawNode = function () {
   return foreignObject;
 }
 
+/* 화살표 그리는 함수 */
 const drawArrow = (nodeData, source, target) => {
   const line = document.createElementNS(SVGNS, "line");
   line.classList.add('subject-arrow');
@@ -62,18 +65,18 @@ const drawArrow = (nodeData, source, target) => {
   const targetRow = nodeData[target].row;
   const targetColumn = nodeData[target].column;
   line.setAttribute("x1", (BLOCK_WIDTH * (sourceColumn + 0.5)) + UNIT);
-  line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 0.5)) + UNIT);
+  line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 0.5) + CATEGORY_BLOCK_HEIGHT) + UNIT);
   line.setAttribute("x2", (BLOCK_WIDTH * (targetColumn + 0.5)) + UNIT);
-  line.setAttribute("y2", (BLOCK_HEIGHT * (targetRow + 0.5)) + UNIT);
+  line.setAttribute("y2", (BLOCK_HEIGHT * (targetRow + 0.5) + CATEGORY_BLOCK_HEIGHT) + UNIT);
 
   /* 상하로 이웃한 경우 */
   if (sourceColumn === targetColumn && sourceRow - targetRow === -1) {
     line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 1) - BOX_SEPARATION) + UNIT);
-    line.setAttribute("y2", (BLOCK_HEIGHT * (targetRow) + BOX_SEPARATION) + UNIT);
+    line.setAttribute("y2", (BLOCK_HEIGHT * (targetRow) + BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     return line;
   } else if (sourceColumn === targetColumn && sourceRow - targetRow === 1) {
     line.setAttribute("y1", (BLOCK_HEIGHT * (sourceColumn) - BOX_SEPARATION) + UNIT);
-    line.setAttribute("y2", (BLOCK_HEIGHT * (targetColumn + 1) + BOX_SEPARATION) + UNIT);
+    line.setAttribute("y2", (BLOCK_HEIGHT * (targetColumn + 1) + BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     return line;
   }
   /* 같은 열이지만 이웃하진 않은 경우 */
@@ -82,10 +85,10 @@ const drawArrow = (nodeData, source, target) => {
     polyLine.classList.add('subject-arrow');
     polyLine.id = source + ':' + target;
     const points = [];
-    points.push([BLOCK_WIDTH * targetColumn + BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5)]);
-    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (sourceRow + .5)]);
-    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (targetRow + .5)]);
-    points.push([BLOCK_WIDTH * targetColumn + BOX_SEPARATION, BLOCK_HEIGHT * (targetRow + .5)]);
+    points.push([BLOCK_WIDTH * targetColumn + BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (sourceRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (targetRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * targetColumn + BOX_SEPARATION, BLOCK_HEIGHT * (targetRow + .5) + CATEGORY_BLOCK_HEIGHT]);
     polyLine.setAttribute('points', points.map((x) => x.map((x) => x * COMP_UNIT_VAL).join(',')).join(' '));
     return polyLine;
   }
@@ -95,10 +98,10 @@ const drawArrow = (nodeData, source, target) => {
     polyLine.classList.add('subject-arrow');
     polyLine.id = source + ':' + target;
     const points = [];
-    points.push([BLOCK_WIDTH * (sourceColumn + 1) - BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5)]);
-    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (sourceRow + .5)]);
-    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (targetRow + .5)]);
-    points.push([BLOCK_WIDTH * (targetColumn) + BOX_SEPARATION, BLOCK_HEIGHT * (targetRow + .5)]);
+    points.push([BLOCK_WIDTH * (sourceColumn + 1) - BOX_SEPARATION, BLOCK_HEIGHT * (sourceRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (sourceRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * targetColumn, BLOCK_HEIGHT * (targetRow + .5) + CATEGORY_BLOCK_HEIGHT]);
+    points.push([BLOCK_WIDTH * (targetColumn) + BOX_SEPARATION, BLOCK_HEIGHT * (targetRow + .5) + CATEGORY_BLOCK_HEIGHT]);
     polyLine.setAttribute('points', points.map((x) => x.map((x) => x * COMP_UNIT_VAL).join(',')).join(' '));
     return polyLine;
   }
@@ -116,8 +119,10 @@ MainData.prototype.drawMap = function () {
 
   /* 내용 초기화 */
   const arrowsContainer = document.getElementById('arrows-container');
+  const groupsContainer = document.getElementById('groups-container');
   const nodesContainer = document.getElementById('nodes-container');
   arrowsContainer.innerHTML = '';
+  groupsContainer.innerHTML = '';
   nodesContainer.innerHTML = '';
 
   /* 임시 변수 */
@@ -125,6 +130,35 @@ MainData.prototype.drawMap = function () {
   const columnData = {};
   const nodeData = {};
   const arrowData = [];
+
+  /* 분류 */
+  const categoryInfo = {
+    0: '10000번대',
+    1: '20000번대',
+    2: '30000번대',
+    3: '40000번대',
+  };
+  for (let rowId in categoryInfo) {
+    const row = Number(rowId);
+    const string = categoryInfo[rowId];
+
+    const indicator = document.createElementNS(SVGNS, 'rect');
+    indicator.setAttribute('x', (BLOCK_WIDTH * row + BOX_SEPARATION) + UNIT);
+    indicator.setAttribute('y', BOX_SEPARATION + UNIT);
+    indicator.setAttribute('width', '0.2rem');
+    indicator.setAttribute('height', CATEGORY_HEIGHT + UNIT);
+    indicator.setAttribute('fill', 'black');
+    groupsContainer.append(indicator);
+
+    const text = document.createElementNS(SVGNS, 'text');
+    text.setAttribute('x', (BLOCK_WIDTH * row + BOX_SEPARATION + 0.6) + UNIT);
+    text.setAttribute('y', (BOX_SEPARATION + CATEGORY_HEIGHT / 2) + UNIT);
+    // text.setAttribute('text-anchor', 'left');
+    text.setAttribute('dominant-baseline', 'middle');
+    text.setAttribute('font-weight', '700');
+    text.textContent = string;
+    groupsContainer.append(text);
+  }
 
   for (let code of codes) {
     const subject = this.subjects[code];
@@ -147,7 +181,7 @@ MainData.prototype.drawMap = function () {
 
     const foreignObject = subject.drawNode();
     foreignObject.setAttribute('x', (BLOCK_WIDTH * column + BOX_SEPARATION) + UNIT);
-    foreignObject.setAttribute('y', (BLOCK_HEIGHT * row + BOX_SEPARATION) + UNIT);
+    foreignObject.setAttribute('y', (BLOCK_HEIGHT * row + BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     foreignObject.setAttribute('width', BOX_WIDTH + UNIT);
     foreignObject.setAttribute('height', BOX_HEIGHT + UNIT);
     g.append(foreignObject);
