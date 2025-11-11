@@ -10,7 +10,7 @@
   & .subject-box {
     width: 10rem;
     height: 3rem;
-    padding: .5rem;
+    padding: calc(.5rem - 1px);
 
     display: flex;
     flex-flow: column nowrap;
@@ -21,6 +21,11 @@
 
     background-color: white;
     border: 1px solid #444;
+
+    &.important {
+      padding: calc(.5rem - 2px);
+      border-width: 2px;
+    }
   }
 
   & .subject-text {

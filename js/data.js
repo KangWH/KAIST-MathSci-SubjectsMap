@@ -37,10 +37,12 @@ mainData.addSubject(mas20010);
 
 const mas20012 = new Subject('MAS.20012', '전공선택', '선형대수학', 'Linear Algebra', '3:0:3');
 mas20012.setCategory(대수);
+mas20012.addStyle('important');
 mainData.addSubject(mas20012);
 
 const mas20041 = new Subject('MAS.20041', '전공선택', '해석학 I', 'Analysis I', '3:2:4');
 mas20041.setCategory(해석);
+mas20041.addStyle('important');
 mainData.addSubject(mas20041);
 
 const mas20042 = new Subject('MAS.20042', '전공선택', '해석학 II', 'Analysis II', '3:2:4');
@@ -58,6 +60,7 @@ mainData.addSubject(mas20075);
 // 3학년 전공선택
 const mas30011 = new Subject('MAS.30011', '전공선택', '현대대수학 I', 'Modern Algebra I', '3:2:4');
 mas30011.setCategory(대수);
+mas30011.addStyle('important');
 mainData.addSubject(mas30011);
 
 const mas30012 = new Subject('MAS.30012', '전공선택', '현대대수학 II', 'Modern Algebra II', '3:0:3');
@@ -68,15 +71,18 @@ mainData.addSubject(mas30012);
 
 const mas30021 = new Subject('MAS.30021', '전공선택', '미분기하학개론', 'Introduction to Differential Geometry', '3:2:4');
 mas30021.setCategory(기하위상);
+mas30021.addStyle('important');
 mas30021.addPrerequisite('MAS.20041');
 mainData.addSubject(mas30021);
 
 const mas30031 = new Subject('MAS.30031', '전공선택', '위상수학', 'Topology', '3:2:4');
 mas30031.setCategory(기하위상);
+mas30031.addStyle('important');
 mainData.addSubject(mas30031);
 
 const mas30041 = new Subject('MAS.30041', '전공선택', '복소변수함수론', 'Complex Variables I', '3:0:3');
 mas30041.setCategory(해석);
+mas30041.addStyle('important');
 mas30041.addPrerequisite('MAS.20041');
 mainData.addSubject(mas30041);
 
@@ -87,6 +93,7 @@ mainData.addSubject(mas30050);
 
 const mas30055 = new Subject('MAS.30055', '전공선택', '수리통계학', 'Mathematical Statistics', '3:0:3');
 mas30055.setCategory(확률통계);
+mas30055.addStyle('important');
 mas30055.addPrerequisite('MAS.20050');
 mas30055.addPrerequisite('MAS.20041');
 mainData.addSubject(mas30055);

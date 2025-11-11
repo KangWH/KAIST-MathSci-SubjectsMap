@@ -7,7 +7,9 @@ class Subject {
     this.nameKR = nameKR;
     this.nameEN = nameEN;
     this.credit = credit;
+
     this.category = 0;
+    this.styles = new Set();
 
     this.prerequisites = new Set();
     this.history = [];
@@ -15,6 +17,15 @@ class Subject {
 
   addPrerequisite = (code) => {
     this.prerequisites.add(code);
+    return this;
+  }
+
+  addStyle = (style) => {
+    this.styles.add(style);
+    return this;
+  }
+  deleteStyle = (style) => {
+    this.styles.delete(style);
     return this;
   }
 
@@ -113,6 +124,8 @@ class MainData {
       const div = document.createElement('div');
       div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
       div.classList.add('subject-box');
+      for (let style of subject.styles)
+        div.classList.add(style);
       div.classList.add(`category${subject.category}`);
 
       const firstRowNode = document.createElement('div');
