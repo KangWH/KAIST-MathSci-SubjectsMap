@@ -1,14 +1,20 @@
 # KAIST-MathSci-SubjectsMap
 
-KAIST 수리과학과의 개설 교과목을 내용과 수준, 선후 관계에 따라 맵으로 나타낸 것입니다.
+KAIST 수리과학과의 개설 교과목을 내용과 수준, 선후 관계에 따라 맵으로 나타낸 것입니다. 인쇄용 버전과 웹 버전이 있으며, 웹 버전에서는 마우스를 원하는 과목에 올려 선후관계를 더 쉽게 볼 수 있습니다.
 
 ## 내용 보기
 
+### 인쇄용 버전
+
 ![KAIST 수리과학과 개설 교과목의 맵. 미완성 버전.](map.png)
+
+### 웹 버전
+
+[여기](https://kangwh.github.io/KAIST-MathSci-SubjectsMap)를 클릭하십시오.
 
 ## 소스 파일에서 컴파일하기
 
-이 맵은 LaTeX과 TikZ/PGF로 작성되었습니다. TeX 배포판과 Pretendard 글꼴을 시스템에 설치한 뒤, 터미널에서
+인쇄용 버전은 LaTeX과 TikZ/PGF로 작성되었습니다. TeX 배포판과 Pretendard 글꼴을 시스템에 설치한 뒤, 터미널에서
 ```
 xelatex map
 ```
