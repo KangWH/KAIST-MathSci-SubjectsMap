@@ -54,6 +54,7 @@
     fill: transparent;
     stroke: black;
     stroke-width: 1px;
+    marker-end: url(#arrow);
 
     transition: stroke .2s, opacity .2s;
 

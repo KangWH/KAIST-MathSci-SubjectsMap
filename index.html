@@ -20,7 +20,15 @@
       </div>
     </header>
     <main>
-      <svg id="map-container"></svg>
+        <svg id="map-container">
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="black"></polygon>
+            </marker>
+          </defs>
+          <g id="arrows-container"></g>
+          <g id="nodes-container"></g>
+        </svg>
     </main>
     <footer class="desktop-only">
       <p>© 2023&ndash;2025 Woohyun Kang. All rights reserved.</p>
@@ -65,6 +73,7 @@
     </dialog>
 
     <script src="js/subject.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/data.js"></script>
     <script src="js/init.js"></script>
   </body>
