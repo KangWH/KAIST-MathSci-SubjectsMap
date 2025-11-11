@@ -1,26 +1,26 @@
 #map-container {
   & .subject-box.category1 {
-    background-color: #C8E8FB;
+    /* &.important { background-color: #C8E8FB; } */
     border-color: #0B5395;
   }
   & .subject-box.category2 {
-    background-color: #C4EFFF;
+    /* &.important { background-color: #C4EFFF; } */
     border-color: #0076A3;
   }
   & .subject-box.category3 {
-    background-color: #C9FAFC;
+    /* &.important { background-color: #C9FAFC; } */
     border-color: #089CA3;
   }
   & .subject-box.category4 {
-    background-color: #CAFBED;
+    /* background-color: #CAFBED; */
     border-color: #0C9B74;
   }
   & .subject-box.category5 {
-    background-color: #E5F4E0;
+    /* background-color: #E5F4E0; */
     border-color: #55A839;
   }
   & .subject-box.category6 {
-    background-color: #EDF3DB;
+    /* background-color: #EDF3DB; */
     border-color: #7E9632;
   }
 }

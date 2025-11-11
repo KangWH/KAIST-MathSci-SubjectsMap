@@ -22,5 +22,10 @@ document.getElementById('options-button').addEventListener('click', (e) => {
 });
 
 window.addEventListener('resize', (e) => {
+  BOX_WIDTH = window.innerWidth > 640 ? 12 : 6;
+  BOX_SEPARATION = window.innerWidth > 640 ? 1 : .7;
+  BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
+  BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
+
   mainData.drawMap(options);
 });

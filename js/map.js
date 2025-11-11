@@ -2,15 +2,15 @@ const SVGNS = 'http://www.w3.org/2000/svg';
 
 /* 도형 관련 상수 --- map.css를 수정하면 여기에도 업데이트 */
 const CATEGORY_HEIGHT = 1;
-const BOX_WIDTH = 10;
-const BOX_HEIGHT = 3;
-const BOX_SEPARATION = 1;
-const UNIT = 'rem';
+let BOX_WIDTH = window.innerWidth > 640 ? 12 : 6;
+let BOX_HEIGHT = 3;
+let BOX_SEPARATION = window.innerWidth > 640 ? 1 : .7;
+const UNIT = 'em';
 // 단위를 사용할 수 없는 경우 COMP_UNIT_VAL을 배율 값에 곱하여 사용
 const COMP_UNIT_VAL = parseFloat(getComputedStyle(document.documentElement).fontSize);
-const BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
-const BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
-const CATEGORY_BLOCK_HEIGHT = BOX_SEPARATION + CATEGORY_HEIGHT;
+let BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
+let BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
+let CATEGORY_BLOCK_HEIGHT = BOX_SEPARATION + CATEGORY_HEIGHT;
 
 /* 현재 과목의 정보를 그리는 함수 */
 Subject.prototype.drawNode = function () {
@@ -26,20 +26,30 @@ Subject.prototype.drawNode = function () {
   for (let style of this.styles)
     div.classList.add(style);
   div.classList.add(`category${this.category}`);
+  if (this.frequency !== 1)
+    div.classList.add('infrequent');
 
   const firstRowNode = document.createElement('div');
   firstRowNode.classList.add('subject-text');
   firstRowNode.style.display = 'flex';
   firstRowNode.style.justifyContent = 'space-between';
 
+  // 과목 코드
   const codeNode = document.createElement('div');
   codeNode.classList.add('subject-text-code');
   codeNode.textContent = this.code;
   firstRowNode.append(codeNode);
 
+  // 부가 정보
   const creditNode = document.createElement('div');
-  creditNode.classList.add('subject-text-code');
+  creditNode.classList.add('subject-text-supplementary');
   creditNode.textContent = this.credit;
+  if (this.semesters[0] && !this.semesters[1] && !this.semesters[2] && !this.semesters[3])
+    creditNode.textContent = '봄 | ' + creditNode.textContent;
+  else if (!this.semesters[0] && !this.semesters[1] && this.semesters[2] && !this.semesters[3])
+    creditNode.textContent = '가을 | ' + creditNode.textContent;
+  if (this.frequency === 2)
+    creditNode.textContent = '격년 ' + creditNode.textContent;
   firstRowNode.append(creditNode);
 
   div.append(firstRowNode);
@@ -125,6 +135,8 @@ MainData.prototype.drawMap = function (options) {
   groupsContainer.innerHTML = '';
   nodesContainer.innerHTML = '';
 
+  container.classList.toggle('compact', options.compact);
+
   /* 임시 변수 */
   const codes = Object.keys(this.subjects).sort();
   const columnData = {};
@@ -152,7 +164,7 @@ MainData.prototype.drawMap = function (options) {
     text.setAttribute('y', (BOX_SEPARATION + CATEGORY_HEIGHT / 2) + UNIT);
     // text.setAttribute('text-anchor', 'left');
     text.setAttribute('dominant-baseline', 'middle');
-    text.setAttribute('font-weight', '700');
+    text.setAttribute('font-weight', '500');
     text.textContent = string;
     groupsContainer.append(text);
   }
@@ -162,14 +174,10 @@ MainData.prototype.drawMap = function (options) {
     if (!options.showgraduate && code.split('.')[1].charAt(0) === '5')
       continue;
 
-    // 행과 열 구하기 --- 일단 테스트용으로 하드코딩
+    // 행과 열 구하기
     const column = getColumn[options.grouping](subject);
-    // const column = subject.type.includes('기초') ? 0 : Number(code.charAt(4)) - 1;
-    // const column = subject.type === '기초필수' ? 0 : subject.type === '기초선택' ? 1 : Number(code.charAt(4));
-    // const column = Number(code.charAt(4)) - 1;
-    if (columnData[column] === undefined) {
+    if (columnData[column] === undefined)
       columnData[column] = [];
-    }  
     const row = columnData[column].length;
     columnData[column].push(code);
     nodeData[code] = {row: row, column: column};

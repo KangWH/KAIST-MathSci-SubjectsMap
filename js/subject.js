@@ -10,13 +10,38 @@ class Subject {
 
     this.category = 0;
     this.styles = new Set();
+    this.frequency = 1; // 연도를 입력, 0은 불규칙 (예: 1은 매년, 2는 격년)
+    this.semesters = [true, false, true, false]; // 봄, 여름, 가을, 겨울
 
     this.prerequisites = new Set();
-    this.history = [];
+    // this.history = [];
   }
 
   addPrerequisite = (code) => {
     this.prerequisites.add(code);
+    return this;
+  }
+
+  setFrequency = (value) => {
+    if (isNaN(Number(value)))
+      throw new Error('wrong value for frequency');
+    this.frequency = Number(value);
+    if (value === 0)
+      this.unsetSemester();
+    return this;
+  }
+  setSemester = (semesterIndex, value) => {
+    if (![0, 1, 2, 3].includes(semesterIndex))
+      throw new Error('Semester Index is invalid');
+    if (value !== true && value !== false)
+      throw new Error('Value must be boolean');
+
+    this.semesters[semesterIndex] = value;
+    return this;
+  }
+  unsetSemester = () => {
+    // 개설 학기가 불규칙한 경우
+    this.semesters = [false, false, false, false];
     return this;
   }
 
@@ -39,6 +64,11 @@ class Subject {
     form.code.value = this.code;
     form.type.value = this.type;
     form.credit.value = this.credit;
+
+    form.frequency.value = this.frequency > 3 ? this.frequency + '년마다' : ['불규칙', '매년', '격년'][this.frequency];
+    form.semesters.value = ['봄', '여름', '가을', '겨울'].filter((v, i) => this.semesters[i]).join(', ');
+    if (form.semesters.value === '')
+      form.semesters.value = '불규칙';
 
     document.getElementById('subject-details-dialog').showModal();
   }

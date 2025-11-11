@@ -1,6 +1,7 @@
 const options = {
   grouping: 'onlygrades',
   showgraduate: false,
+  compact: false,
 };
 
 const getColumn = {
@@ -19,18 +20,18 @@ const categoryData = {
   },
   'groupbasics': {
     0: '기초과목',
-    1: '20000번대 전공',
-    2: '30000번대 전공',
-    3: '40000번대 전공',
-    4: '50000번대 전공',
+    1: '20000번대',
+    2: '30000번대',
+    3: '40000번대',
+    4: '50000번대',
   },
   'separatebasics': {
     0: '기초필수',
     1: '기초선택',
-    2: '20000번대 전공',
-    3: '30000번대 전공',
-    4: '40000번대 전공',
-    5: '50000번대 전공',
+    2: '20000번대',
+    3: '30000번대',
+    4: '40000번대',
+    5: '50000번대',
   },
 }
 
@@ -39,6 +40,10 @@ document.getElementById('options-form').addEventListener('change', (e) => {
 
   options.grouping = form.grouping.value;
   options.showgraduate = form.showgraduate.checked;
+  options.compact = form.compact.checked;
+
+  BOX_HEIGHT = options.compact ? 2 : 3;
+  BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
 
   mainData.drawMap(options);
 });

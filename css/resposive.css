@@ -19,6 +19,13 @@
     padding-bottom: 4.5rem;
   }
 
+  #map-container .subject-box {
+    width: 6rem !important;
+  }
+  #map-container .subject-text-supplementary {
+    display: none;
+  }
+
   footer {
     height: unset;
 
