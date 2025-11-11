@@ -40,7 +40,8 @@ class MainData {
   }
 
   drawMap = () => {
-    const BOX_WIDTH = 12;
+    /* 도형 관련 상수 --- map.css를 수정하면 여기에도 업데이트 */
+    const BOX_WIDTH = 10;
     const BOX_HEIGHT = 3;
     const BOX_SEPARATION = 1;
     const UNIT = 'rem';
@@ -55,18 +56,18 @@ class MainData {
     /* 내용 초기화 */
     container.innerHTML = '';
 
-    /* 화살표 marker 정의 */
     const defs = document.createElementNS(svgns, "defs");
+    /* 화살표 marker 정의 */
     const marker = document.createElementNS(svgns, "marker");
     marker.setAttribute("id", "arrow");
     marker.setAttribute("markerWidth", "8");
     marker.setAttribute("markerHeight", "6");
-    marker.setAttribute("refX", "10");
+    marker.setAttribute("refX", "8");
     marker.setAttribute("refY", "3");
     marker.setAttribute("orient", "auto");
     const polygon = document.createElementNS(svgns, "polygon");
     polygon.setAttribute("points", "0 0, 8 3, 0 6");
-    polygon.setAttribute("fill", "black ");
+    polygon.setAttribute("fill", "black");
     marker.append(polygon);
     defs.append(marker);
     container.append(defs);
@@ -99,36 +100,47 @@ class MainData {
       g.classList.add('subject-container');
       g.id = code;
 
-      const rect = document.createElementNS(svgns, "rect");
-      rect.classList.add('subject-box');
-      rect.classList.add(`category${subject.category}`);
-      rect.setAttribute("x", (BLOCK_WIDTH * column + BOX_SEPARATION) + UNIT);
-      rect.setAttribute("y", (BLOCK_HEIGHT * row + BOX_SEPARATION) + UNIT);
-      g.appendChild(rect);
+      const foreignObject = document.createElementNS(svgns, 'foreignObject');
+      foreignObject.setAttribute('x', (BLOCK_WIDTH * column + BOX_SEPARATION) + UNIT);
+      foreignObject.setAttribute('y', (BLOCK_HEIGHT * row + BOX_SEPARATION) + UNIT);
+      foreignObject.setAttribute('width', BOX_WIDTH + UNIT);
+      foreignObject.setAttribute('height', BOX_HEIGHT + UNIT);
 
-      const codeText = document.createElementNS(svgns, "text");
-      codeText.classList.add('subject-text');
-      codeText.classList.add('subject-text-code');
-      codeText.setAttribute("x", (BLOCK_WIDTH * column + (BLOCK_WIDTH / 2)) + UNIT); // 텍스트의 x 위치
-      codeText.setAttribute("y", (BLOCK_HEIGHT * row + (BLOCK_HEIGHT / 2) - .5) + UNIT);  // 텍스트의 y 위치
-      codeText.textContent = code + ' | ' + subject.credit;
-      g.appendChild(codeText);
+      const title = document.createElementNS(svgns, 'title');
+      title.textContent = code + ' ' + subject.nameKR;
+      foreignObject.append(title);
 
-      const nameKRText = document.createElementNS(svgns, "text");
-      nameKRText.classList.add('subject-text');
-      nameKRText.classList.add('subject-text-name');
-      nameKRText.setAttribute("x", (BLOCK_WIDTH * column + (BLOCK_WIDTH / 2)) + UNIT); // 텍스트의 x 위치
-      nameKRText.setAttribute("y", (BLOCK_HEIGHT * row + (BLOCK_HEIGHT / 2) + .5) + UNIT);  // 텍스트의 y 위치
-      nameKRText.textContent = subject.nameKR;
-      g.appendChild(nameKRText);
+      const div = document.createElement('div');
+      div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+      div.classList.add('subject-box');
+      div.classList.add(`category${subject.category}`);
 
-      // const supplementaryText = document.createElementNS(svgns, "text");
-      // supplementaryText.classList.add('subject-text');
-      // supplementaryText.classList.add('subject-text-supplementary');
-      // supplementaryText.setAttribute("x", (BLOCK_WIDTH * column + (BLOCK_WIDTH / 2)) + UNIT); // 텍스트의 x 위치
-      // supplementaryText.setAttribute("y", (BLOCK_HEIGHT * row + (BLOCK_HEIGHT / 2) + 1) + UNIT);  // 텍스트의 y 위치
-      // supplementaryText.textContent = `${subject.type} | ${subject.credit}`;
-      // g.appendChild(supplementaryText);
+      const firstRowNode = document.createElement('div');
+      firstRowNode.classList.add('subject-text');
+      firstRowNode.style.display = 'flex';
+      firstRowNode.style.justifyContent = 'space-between';
+
+      const codeNode = document.createElement('div');
+      codeNode.classList.add('subject-text-code');
+      codeNode.textContent = code;
+      firstRowNode.append(codeNode);
+
+      const creditNode = document.createElement('div');
+      creditNode.classList.add('subject-text-code');
+      creditNode.textContent = subject.credit;
+      firstRowNode.append(creditNode);
+
+      div.append(firstRowNode);
+
+      const nameNode = document.createElement('div');
+      nameNode.classList.add('subject-text');
+      nameNode.classList.add('subject-text-name');
+      nameNode.textContent = subject.nameKR;
+      div.append(nameNode);
+
+      foreignObject.append(div);
+
+      g.append(foreignObject);
 
       container.appendChild(g);
       g.addEventListener('click', subject.showDetails);

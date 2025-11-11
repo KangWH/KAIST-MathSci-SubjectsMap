@@ -8,17 +8,28 @@
   }
 
   & .subject-box {
-    width: 12rem;
+    width: 10rem;
     height: 3rem;
+    padding: .5rem;
 
-    fill: #F0F0F0;
-    stroke: #444;
-    stroke-width: 2px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    /* overflow: hidden; */
+
+    text-align: left;
+
+    background-color: white;
+    border: 1px solid #444;
   }
 
   & .subject-text {
-    dominant-baseline: middle;
-    text-anchor: middle;
+    width: 100%;
+
+    overflow: hidden;
+    
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   & .subject-text-code {

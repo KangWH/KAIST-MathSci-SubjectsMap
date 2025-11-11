@@ -1,26 +1,26 @@
 #map-container {
   & .subject-box.category1 {
-    fill: #C8E8FB;
-    stroke: #0B5395;
+    background-color: #C8E8FB;
+    border-color: #0B5395;
   }
   & .subject-box.category2 {
-    fill: #C4EFFF;
-    stroke: #0076A3;
+    background-color: #C4EFFF;
+    border-color: #0076A3;
   }
   & .subject-box.category3 {
-    fill: #C9FAFC;
-    stroke: #089CA3;
+    background-color: #C9FAFC;
+    border-color: #089CA3;
   }
   & .subject-box.category4 {
-    fill: #CAFBED;
-    stroke: #0C9B74;
+    background-color: #CAFBED;
+    border-color: #0C9B74;
   }
   & .subject-box.category5 {
-    fill: #E5F4E0;
-    stroke: #55A839;
+    background-color: #E5F4E0;
+    border-color: #55A839;
   }
   & .subject-box.category6 {
-    fill: #EDF3DB;
-    stroke: #7E9632;
+    background-color: #EDF3DB;
+    border-color: #7E9632;
   }
 }

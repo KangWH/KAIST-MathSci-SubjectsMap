@@ -25,11 +25,15 @@ p + p {
 }
 
 :root {
+  background-color: #EFF0F4;
+
   font-family: Pretendard, sans-serif;
 }
 
 body {
   margin: 0;
+
+  overflow-x: auto;
 }
 
 header {
@@ -51,7 +55,7 @@ h1 {
   font-size: 1.5em;
 }
 
-header p {
+header div {
   margin-top: .75rem;
 
   font-weight: 300;
@@ -61,6 +65,41 @@ main {
   padding: 3em 0 2em;
 
   text-align: center;
+}
+
+menu {
+  position: fixed;
+  bottom: 0;
+  margin: 1rem;
+  width: calc(100% - 2rem);
+  height: 4rem;
+  padding: .5rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+
+  list-style-type: none;
+
+  background-color: #FFFFFFC0;
+  backdrop-filter: blur(2rem);
+  box-shadow: 0 0 1rem -1rem;
+  border-radius: 2rem;
+
+  & li {
+    padding: .5rem;
+    
+    flex: 4em 1 0;
+
+    border-radius: 1.5rem;
+
+    text-align: center;
+
+    &.active {
+      background-color: lightgray;
+      color: #007FFF;
+    }
+  }
 }
 
 footer {
@@ -76,10 +115,13 @@ footer {
 
   backdrop-filter: blur(.25em);
 
-  & p { font-size: .8em; }
+  & p {
+    margin: .5rem 0;
+    font-size: .8em;
+    line-height: 1;
+  }
 }
 
 #map-container {
-  margin: auto;
-  /* width: 100%; */
+  max-width: none;
 }
