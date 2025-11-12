@@ -81,11 +81,11 @@ const drawArrow = (nodeData, source, target) => {
 
   /* 상하로 이웃한 경우 */
   if (sourceColumn === targetColumn && sourceRow - targetRow === -1) {
-    line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 1) - BOX_SEPARATION) + UNIT);
+    line.setAttribute("y1", (BLOCK_HEIGHT * (sourceRow + 1) - BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     line.setAttribute("y2", (BLOCK_HEIGHT * (targetRow) + BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     return line;
   } else if (sourceColumn === targetColumn && sourceRow - targetRow === 1) {
-    line.setAttribute("y1", (BLOCK_HEIGHT * (sourceColumn) - BOX_SEPARATION) + UNIT);
+    line.setAttribute("y1", (BLOCK_HEIGHT * (sourceColumn) - BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     line.setAttribute("y2", (BLOCK_HEIGHT * (targetColumn + 1) + BOX_SEPARATION + CATEGORY_BLOCK_HEIGHT) + UNIT);
     return line;
   }
