@@ -50,7 +50,36 @@ header {
   background-color: #EFF0F440;
   backdrop-filter: blur(1rem);
 }
+header > div {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: .5rem;
 
+  & .button-group {
+    display: flex;
+    flex-flow: row nowrap;
+
+    background-color: #f9fbff;
+    box-shadow: 0 0 1rem -.75rem;
+    border-radius: 1rem;
+  }
+  & button {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+
+    background-color: transparent;
+    border: none;
+    border-radius: 1rem;
+
+    &:hover {
+      background-color: #eceef2;
+    }
+    &:hover:active {
+      background-color: #e0e2e6;
+    }
+  }
+}
 h1 {
   margin: 0;
   padding-block: .375rem;
@@ -60,10 +89,7 @@ h1 {
 header div {
   display: flex;
   flex-flow: row nowrap;
-  align-items: center;
-  gap: .5rem;
 
-  font-weight: 200;
 }
 
 main {
