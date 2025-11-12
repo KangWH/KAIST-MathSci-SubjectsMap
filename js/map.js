@@ -162,7 +162,6 @@ MainData.prototype.drawMap = function (options) {
     const text = document.createElementNS(SVGNS, 'text');
     text.setAttribute('x', (BLOCK_WIDTH * row + BOX_SEPARATION + 0.6) + UNIT);
     text.setAttribute('y', (BOX_SEPARATION + CATEGORY_HEIGHT / 2) + UNIT);
-    // text.setAttribute('text-anchor', 'left');
     text.setAttribute('dominant-baseline', 'middle');
     text.setAttribute('font-weight', '500');
     text.textContent = string;

@@ -1,4 +1,19 @@
-#map-container {
+:root {
+  --palette-color1: #0B5395;
+  --palette-color1-sub: #C8E8FB;
+  --palette-color2: #0076A3;
+  --palette-color2-sub: #C4EFFF;
+  --palette-color3: #089CA3;
+  --palette-color3-sub: #C9FAFC;
+  --palette-color4: #0C9B74;
+  --palette-color4-sub: #CAFBED;
+  --palette-color5: #55A839;
+  --palette-color5-sub: #E5F4E0;
+  --palette-color6: #7E9632;
+  --palette-color6-sub: #EDF3DB;
+}
+
+#map-container { 
   & .subject-box.category1 {
     /* &.important { background-color: #C8E8FB; } */
     border-color: #0B5395;

@@ -41,20 +41,20 @@ header {
   top: 0;
   width: 100%;
   height: 3em;
-  padding-inline: 1em;
+  padding: .5rem 1rem;
 
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  align-items: center;
 
   background-color: #EFF0F440;
-  backdrop-filter: blur(1em);
+  backdrop-filter: blur(1rem);
 }
 
 h1 {
   margin: 0;
-  font-size: 1.5em;
+  padding-block: .375rem;
+  font-size: 1.25rem;
 }
 
 header div {

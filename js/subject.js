@@ -55,7 +55,11 @@ class Subject {
   }
 
   setCategory = (id) => {
+    if (Number(id) !== id || isNaN(Number(id)))
+      throw new Error('Category ID must be an integer.');
+    
     this.category = id;
+    return this;
   }
 
   showDetails = () => {
