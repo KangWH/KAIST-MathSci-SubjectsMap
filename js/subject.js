@@ -62,7 +62,9 @@ class Subject {
     return this;
   }
 
-  showDetails = () => {
+  showDetails = (e) => {
+    e.preventDefault();
+
     const form = document.getElementById('subject-details-form');
     form.subjectTitle.textContent = this.nameKR;
     form.code.value = this.code;
@@ -83,6 +85,7 @@ class MainData {
     this.subjects = {};
     this.categories = ['기타'];
 
+    this.activeNode = null;
     this.filter = {
       query: null,
       type: null,

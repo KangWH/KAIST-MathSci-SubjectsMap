@@ -30,6 +30,14 @@ document.getElementById('options-button').addEventListener('click', (e) => {
   document.getElementById('options-dialog').showModal();
 });
 
+window.addEventListener('click', (e) => {
+  if (e.target.nodeName === 'DIV' && ['subject-box', 'subject-text', 'subject-text-code', 'subject-text-name', 'subject-text-supplementary'].includes(Array.from(e.target.classList)[0]))
+    return;
+
+  mainData.activeNode = null;
+  mainData.hidePrerequisites();
+});
+
 window.addEventListener('resize', (e) => {
   BOX_WIDTH = window.innerWidth > 640 ? 12 : 6;
   BOX_SEPARATION = window.innerWidth > 640 ? 1 : .7;

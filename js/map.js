@@ -194,7 +194,11 @@ MainData.prototype.drawMap = function (options) {
     g.append(foreignObject);
 
     nodesContainer.appendChild(g);
-    g.addEventListener('click', subject.showDetails);
+    g.addEventListener('contextmenu', subject.showDetails);
+    g.addEventListener('click', () => {
+      this.activeNode = code;
+      this.showPrerequisites(code)
+    });
     g.addEventListener('mouseenter', () => {this.showPrerequisites(code)});
     g.addEventListener('mouseleave', this.hidePrerequisites);
 
@@ -267,8 +271,8 @@ MainData.prototype.showPrerequisites = function (code, recursive = false) {
 }
 MainData.prototype.hidePrerequisites = function () {
   /* 다이얼로그가 열려 있으면 유지 */
-  if (document.getElementById('subject-details-dialog').getAttribute('open') !== null)
-    return;
+  // if (document.getElementById('subject-details-dialog').getAttribute('open') !== null)
+  //   return;
 
   const svg = document.getElementById('map-container');
   const subjects = svg.querySelectorAll('.subject-container');
@@ -281,6 +285,9 @@ MainData.prototype.hidePrerequisites = function () {
     arrow.classList.remove('inactive');
     arrow.classList.remove('active');
   }
+
+  if (mainData.activeNode !== null)
+    mainData.showPrerequisites(mainData.activeNode);
 }
 
 /* 사이드바 필터 표시 */
