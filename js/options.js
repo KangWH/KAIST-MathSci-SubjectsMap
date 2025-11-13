@@ -6,7 +6,7 @@ const options = {
 
 const getColumn = {
   'onlygrades': (subject) => Number(subject.code.charAt(4)) - 1,
-  'groupbasics': (subject) => [기필, 기선](subject.type) ? 0 : Number(subject.code.charAt(4)) - 1,
+  'groupbasics': (subject) => [기필, 기선].includes(subject.type) ? 0 : Number(subject.code.charAt(4)) - 1,
   'separatebasics': (subject) => subject.type === 기필 ? 0 : subject.type === 기선 ? 1 : Number(subject.code.charAt(4)),
 };
 
