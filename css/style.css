@@ -126,9 +126,19 @@ aside {
   /* backdrop-filter: blur(1rem); */
 
   & button {
+    width: 2rem;
+    height: 2rem;
+
     background-color: transparent;
     border: none;
     border-radius: 1rem;
+
+    &:hover {
+      background-color: #eceef2;
+    }
+    &:hover:active {
+      background-color: #e0e2e6;
+    }
   }
 }
 #close-sidebar-button {
