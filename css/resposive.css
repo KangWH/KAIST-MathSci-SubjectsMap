@@ -11,8 +11,7 @@
   }
 
   header {
-    height: 3.5rem;
-    padding-top: 0;
+    height: 4rem;
   }
   header > div {
     & .button-group {
@@ -26,11 +25,12 @@
     }
   }
   h1 {
+    margin-left: -.5rem;
     padding-block: .875rem;
   }
 
   main {
-    padding-top: 3.5rem;
+    padding-top: 4rem;
     padding-bottom: 4.5rem;
   }
 

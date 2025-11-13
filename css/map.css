@@ -1,82 +1,84 @@
-#map-container {
-  & .subject-container {
-    transition: opacity .2s;
+& .subject-container {
+  transition: opacity .2s;
 
-    &.inactive {
-      opacity: 0.3;
-    }
+  &.inactive {
+    opacity: 0.3;
   }
 
-  & .subject-box {
-    width: 12rem;
-    height: 3rem;
-    padding: .5rem;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-
-    text-align: left;
-
-    background-color: white;
-    border: 0 solid #444;
-    border-left-width: 4px;
-
-    &.important {
-      padding: calc(.5rem - 1px);
-      border-width: 1px;
-      border-left-width: 4px;
-    }
-    &.infrequent {
-      border-style: dotted;
-      border-left-width: 3px;
-    }
-  }
-
-  & .subject-text {
-    width: 100%;
-
-    overflow: hidden;
-    
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  & .subject-text-code {
-    font-size: .8em;
-  }
-
-  & .subject-text-name {
-    font-weight: 700;
-  }
-
-  & .subject-text-supplementary {
-    font-weight: 300;
-    font-size: .8em;
-  }
-
-  & .subject-arrow {
-    fill: transparent;
-    stroke: black;
-    stroke-width: 1px;
-    marker-end: url(#arrow);
-    opacity: 0.4;
-
-    transition: stroke .2s, opacity .2s;
-
-    &.inactive {
-      opacity: 0;
-    }
-    &.active {
-      opacity: 1;
-    }
+  &.filtered {
+    opacity: 0.3;
   }
 }
 
-#map-container.compact .subject-box {
+& .subject-box {
+  width: 12rem;
+  height: 3rem;
+  padding: .5rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  text-align: left;
+
+  background-color: white;
+  border: 0 solid #444;
+  border-left-width: 4px;
+
+  &.important {
+    padding: calc(.5rem - 1px);
+    border-width: 1px;
+    border-left-width: 4px;
+  }
+  &.infrequent {
+    border-style: dotted;
+    border-left-width: 3px;
+  }
+}
+
+& .subject-text {
+  width: 100%;
+
+  overflow: hidden;
+  
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+& .subject-text-code {
+  font-size: .8em;
+}
+
+& .subject-text-name {
+  font-weight: 700;
+}
+
+& .subject-text-supplementary {
+  font-weight: 300;
+  font-size: .8em;
+}
+
+& .subject-arrow {
+  fill: transparent;
+  stroke: black;
+  stroke-width: 1px;
+  marker-end: url(#arrow);
+  opacity: 0.4;
+
+  transition: stroke .2s, opacity .2s;
+
+  &.inactive {
+    opacity: 0;
+  }
+  &.active {
+    opacity: 1;
+  }
+}
+
+.compact .subject-box {
   height: 2rem;
 }
-#map-container.compact .subject-text-code,
-#map-container.compact .subject-text-supplementary {
+.compact .subject-text-code,
+.compact .subject-text-supplementary {
   display: none;
 }

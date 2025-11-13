@@ -225,6 +225,9 @@ MainData.prototype.drawMap = function (options) {
   container.setAttribute('width', bbox.x + bbox.width + bbox.x + 2);
   container.setAttribute('height', bbox.y + bbox.height + bbox.y + 2);
 
+  /* 필터 적용 */
+  this.applyFilter();
+
   return;
 }
 
@@ -279,3 +282,86 @@ MainData.prototype.hidePrerequisites = function () {
     arrow.classList.remove('active');
   }
 }
+
+/* 사이드바 필터 표시 */
+MainData.prototype.generateSidebar = function () {
+  this.generateTypeSidebar();
+  this.generateCategorySidebar();
+};
+MainData.prototype.generateTypeSidebar = function () {
+  const container = document.getElementById('aside-types-container');
+  container.innerHTML = '';
+
+  const types = new Set();
+  for (let subject of Object.values(this.subjects))
+    types.add(subject.type);
+
+  for (let type of types) {
+    const li = document.createElement('li');
+    li.setAttribute('tabindex', 0);
+    li.setAttribute('filterType', 'type');
+    li.setAttribute('filterValue', type);
+    li.textContent = type;
+    container.append(li);
+    li.addEventListener('click', filterItemHandler);
+  }
+};
+MainData.prototype.generateCategorySidebar = function () {
+  const container = document.getElementById('aside-categories-container');
+  container.innerHTML = '';
+
+  for (let ind = 1; ind < this.categories.length; ind++) {
+    const li = document.createElement('li');
+    li.setAttribute('tabindex', 0);
+    li.setAttribute('filterType', 'category');
+    li.setAttribute('filterValue', ind);
+
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = '●';
+    iconSpan.style.paddingRight = '1rem';
+    iconSpan.style.color = `var(--palette-color${ind})`;
+    li.append(iconSpan);
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = this.categories[ind];
+    li.append(textSpan);
+
+    container.append(li);
+    li.addEventListener('click', filterItemHandler);
+  }
+};
+
+const filterClearHandler = (e) => {
+  const aside = document.querySelector('aside');
+  const items = aside.querySelectorAll('li');
+  for (let item of items)
+    item.classList.remove('active');
+
+  e.currentTarget.classList.add('active');
+
+  mainData.clearFilter();
+  mainData.applyFilter();
+};
+const filterItemHandler = (e) => {
+  const aside = document.querySelector('aside');
+  const items = aside.querySelectorAll('li');
+  for (let item of items)
+    item.classList.remove('active');
+
+  e.currentTarget.classList.add('active');
+
+  const filterType = e.currentTarget.getAttribute('filterType');
+  const filterValueStr = e.currentTarget.getAttribute('filterValue');
+  const filterValue = isNaN(Number(filterValueStr)) ? filterValueStr : Number(filterValueStr);
+  mainData.setFilter(filterType, filterValue);
+  mainData.applyFilter();
+};
+
+/* 필터를 적용하여 맵에 표시 */
+MainData.prototype.applyFilter = function () {
+  for (let code in this.subjects) {
+    const node = document.getElementById(code);
+    if (node)
+      node.classList.toggle('filtered', !this.checkFilter(code));
+  }
+};

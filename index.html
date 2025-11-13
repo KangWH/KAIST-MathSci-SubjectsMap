@@ -14,16 +14,58 @@
   <body>
     <header>
       <div>
+        <div class="button-group">
+          <button id="open-sidebar-button" class="desktop-only">≡</button>
+        </div>
         <h1>카이수리맵</h1>
       </div>
       <div>
         <div class="desktop-only" style="padding-block: .5rem;">2025.11.11.&nbsp;업데이트(베타)</div>
         <div class="button-group">
-          <button id="suggestion-button">❓</button>
-          <button id="options-button">⚙️</button>
+          <button id="suggestion-button">?</button>
+          <button id="options-button">&middot;&middot;&middot;</button>
         </div>
       </div>
     </header>
+    <aside class="desktop-only">
+      <div class="aside-header">
+        <button id="close-sidebar-button">≡</button>
+      </div>
+      <ul>
+        <ul>
+          <li tabindex="0" id="clear-filter-item" class="active">모든 과목</li>
+        </ul>
+        <li>과목 구분</li>
+        <ul id="aside-types-container"></ul>
+        <li>카테고리</li>
+        <ul id="aside-categories-container"></ul>
+        <li style="margin-top: auto;">범례</li>
+        <ul>
+          <li>
+            <div class="subject-box">
+              <div style="display: flex; justify-content: space-between;">
+                <div class="subject-text-code">과목 코드</div>
+                <div class="subject-text-supplementary">학기 | 강:실:학</div>
+              </div>
+              <div class="subject-text subject-text-name">과목 이름</div>
+            </div>
+          </li>
+        </ul>
+        <li>특수 과목 범례</li>
+        <ul>
+          <li>
+            <div class="subject-box important" style="height: unset;">
+              <div class="subject-text">7중4택 필수 과목</div>
+            </div>
+          </li>
+          <li>
+            <div class="subject-box infrequent" style="height: unset;">
+              <div class="subject-text">매년 개설되지 않는 과목</div>
+            </div>
+          </li>
+        </ul>
+      </ul>
+    </aside>
     <main>
       <div id="map-wrapper" style="max-width: 100%; overflow-x: auto;">
         <svg id="map-container">

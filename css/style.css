@@ -27,7 +27,7 @@ p + p {
 :root {
   background-color: #EFF0F4;
 
-  font-family: Pretendard, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
@@ -39,6 +39,7 @@ body {
 header {
   position: fixed;
   top: 0;
+  z-index: 1000;
   width: 100%;
   height: 3em;
   padding: .5rem 1rem;
@@ -87,13 +88,113 @@ h1 {
   font-size: 1.25rem;
 }
 
-header div {
+.aside-opened {
+  header { padding-left: 16rem; }
+  #open-sidebar-button { display: none; }
+  #close-sidebar-button { display: block; }
+  aside { display: block; }
+  #map-wrapper { padding-left: 15.5rem; }
+  footer { padding-left: 16.5rem; }
+}
+aside {
+  position: fixed;
+  left: .5rem;
+  top: .5rem;
+  z-index: 2000;
+  width: 15rem;
+  height: calc(100% - 1rem);
+
+  display: none;
+  overflow: auto;
+  
+  border-radius: 1rem;
+  background-color: #ffffff40;
+  backdrop-filter: blur(1rem);
+  box-shadow: 0 0 2rem -1.5rem;
+}
+.aside-header {
+  position: sticky;
+  top: 0;
+  height: 2.5rem;
+  padding-bottom: .5rem;
+
   display: flex;
   flex-flow: row nowrap;
+  justify-content: flex-end;
+  
+  background-color: #EFF0F440;
+  /* backdrop-filter: blur(1rem); */
 
+  & button {
+    background-color: transparent;
+    border: none;
+    border-radius: 1rem;
+  }
+}
+#close-sidebar-button {
+  display: none;
+}
+aside > ul {
+  margin: 0;
+  padding: 0 1rem 1rem;
+
+  list-style-type: none;
+}
+aside > ul > li {
+  padding-top: 1rem;
+  padding-bottom: .25rem;
+
+  font-weight: 500;
+  font-size: .8rem;
+  opacity: 50%;
+}
+aside > ul > ul {
+  padding: 0;
+
+  list-style-type: none;
+}
+aside > ul > ul > li {
+  padding: .5rem;
+
+  border-radius: .5rem;
+
+  &.active {
+    background-color: #00000010;
+  }
+}
+aside > ul > dl {
+  padding: 0;
+
+  display: grid;
+  grid-template-columns: 2rem auto;
+}
+aside > ul > dl > dt {
+  margin: 0;
+  padding: .5rem;
+
+  &.active {
+    background-color: #007FFF;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+
+    color: white;
+  }
+}
+aside > ul > dl > dd {
+  margin: 0;
+  padding: .5rem;
+
+  &.active {
+    background-color: #007FFF;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
+    color: white;
+  }
 }
 
 main {
+  position: relative;
   padding: 3em 0 0;
 
   text-align: center;

@@ -82,12 +82,18 @@ class MainData {
   constructor () {
     this.subjects = {};
     this.categories = ['기타'];
+
+    this.filter = {
+      query: null,
+      type: null,
+      category: null,
+    };
   }
 
   addSubject = (subject) => {
     this.subjects[subject.code] = subject;
     return this;
-  }
+  };
 
   addCategory = (name) => {
     if (this.categories.includes(name))
@@ -96,7 +102,49 @@ class MainData {
       this.categories.push(name);
       return this.categories.length - 1;
     }
-  }
+  };
+
+  setQuery = (query) => {
+    this.clearFilter();
+    this.filter.query = query;
+  };
+  setTypeFilter = (typeId) => {
+    this.clearFilter();
+    this.filter.type = typeId;
+  };
+  setCategoryFilter = (categoryId) => {
+    this.clearFilter();
+    this.filter.category = categoryId;
+  };
+  setFilter = (key, value) => {
+    this.clearFilter();
+    this.filter[key] = value;
+  };
+  clearFilter = () => {
+    this.filter = {
+      query: null,
+      type: null,
+      category: null,
+    };
+  };
+
+  checkFilter = (code) => {
+    const key = this.filter.query !== null ? 'query' : this.filter.type !== null ? 'type' : this.filter.category !== null ? 'category' : null;
+    if (key === null)
+      return true;
+
+    const subject = this.subjects[code];
+    switch (key) {
+      case 'query':
+        return subject.code.includes(query) || subject.nameKR.replaceAll(' ', '').includes(query.replaceAll(' ')) || subject.nameEN.includes(query);
+
+      case 'type':
+        return subject.type === this.filter.type;
+      
+      case 'category':
+        return subject.category === this.filter.category;
+    }
+  };
 }
 
 const mainData = new MainData();
