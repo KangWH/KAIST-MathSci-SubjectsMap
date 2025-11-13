@@ -1,4 +1,9 @@
 const SUBJECT_TYPES = ['기초필수', '기초선택', '전공필수', '전공선택', '교양필수', '인문사회선택', '공통필수', '선택(석/박사)', '자유선택', '개별연구', '졸업연구', '논문연구', '인턴십', '기타'];
+const 기필 = SUBJECT_TYPES.indexOf('기초필수');
+const 기선 = SUBJECT_TYPES.indexOf('기초선택');
+const 전필 = SUBJECT_TYPES.indexOf('전공필수');
+const 전선 = SUBJECT_TYPES.indexOf('전공선택');
+const 선택 = SUBJECT_TYPES.indexOf('선택(석/박사)');
 
 class Subject {
   constructor (code, type, nameKR, nameEN, credit) {
@@ -68,7 +73,7 @@ class Subject {
     const form = document.getElementById('subject-details-form');
     form.subjectTitle.textContent = this.nameKR;
     form.code.value = this.code;
-    form.type.value = this.type;
+    form.type.value = SUBJECT_TYPES[this.type];
     form.credit.value = this.credit;
 
     form.frequency.value = this.frequency > 3 ? this.frequency + '년마다' : ['불규칙', '매년', '격년'][this.frequency];
@@ -139,7 +144,7 @@ class MainData {
     const subject = this.subjects[code];
     switch (key) {
       case 'query':
-        return subject.code.includes(query) || subject.nameKR.replaceAll(' ', '').includes(query.replaceAll(' ')) || subject.nameEN.includes(query);
+        return subject.code.includes(this.filter.query) || subject.nameKR.replaceAll(' ', '').includes(this.filter.query.replaceAll(' ')) || subject.nameEN.includes(this.filter.query);
 
       case 'type':
         return subject.type === this.filter.type;

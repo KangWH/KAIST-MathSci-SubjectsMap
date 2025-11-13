@@ -308,7 +308,7 @@ MainData.prototype.generateTypeSidebar = function () {
     li.setAttribute('tabindex', 0);
     li.setAttribute('filterType', 'type');
     li.setAttribute('filterValue', type);
-    li.textContent = type;
+    li.textContent = SUBJECT_TYPES[type];
     container.append(li);
     li.addEventListener('click', filterItemHandler);
   }
