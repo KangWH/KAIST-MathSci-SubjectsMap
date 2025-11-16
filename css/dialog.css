@@ -4,8 +4,11 @@ dialog {
   &[open] { display: flex; }
   flex-flow: column nowrap;
 
+  background-color: var(--background-color);
   border: none;
   border-radius: 1em;
+
+  color: var(--text-color);
 }
 
 .dialog-header {
@@ -13,10 +16,10 @@ dialog {
 
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 .dialog-header-title {
-  flex-grow: 1;
-  
   font-weight: 700;
   font-size: 1.2em;
 }

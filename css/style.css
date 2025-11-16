@@ -9,18 +9,33 @@
 
 input {
   font: inherit;
+  color: var(--text-color);
+}
+input[type="text"],
+input[type="search"] {
+  padding: .5rem;
+  
+  background-color: var(--floor-color);
+  border: none;
+  border-radius: 1rem;
 }
 
 button {
+  padding: .5rem;
+
+  background-color: var(--floor-color);
+  border: none;
+  border-radius: 1rem;
+
   font: inherit;
-  color: inherit;
+  color: var(--text-color);
 }
 
 .button-group {
   display: flex;
   flex-flow: row nowrap;
 
-  background-color: #f9fbff;
+  background-color: var(--button-color);
   box-shadow: 0 0 1rem -.75rem;
   border-radius: 1rem;
 
@@ -38,10 +53,10 @@ button {
     border-radius: 1rem;
 
     &:hover {
-      background-color: #eceef2;
+      background-color: var(--button-hover-color);
     }
     &:hover:active {
-      background-color: #e0e2e6;
+      background-color: var(--button-click-color);
     }
   }
 }
@@ -56,9 +71,19 @@ p + p {
 }
 
 :root {
-  background-color: #EFF0F4;
+  --floor-color: #EFF0F4;
+  --background-color: white;
+  --button-color: #F9FBFF;
+  --button-hover-color: #ECEEF2;
+  --button-click-color: #E0E2E6;
+  --text-color: black;
+
+  --showall-icon: url("../svg/showall-black.svg");
+
+  background-color: var(--floor-color);
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
 }
 
 body {
@@ -79,7 +104,6 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
 
-  /* background-color: #EFF0F440; */
   background-image: linear-gradient(down, #EFF0F4, #EFF0F440);
   backdrop-filter: blur(1rem);
 }
@@ -114,7 +138,7 @@ aside {
   overflow: auto;
   
   border-radius: 1rem;
-  background-color: #ffffff40;
+  background-color: color-mix(in srgb, var(--floor-color), transparent 25%);
   backdrop-filter: blur(1rem);
   box-shadow: 0 0 2rem -1.5rem;
 }
@@ -130,23 +154,7 @@ aside {
   justify-content: space-between;
   align-items: center;
   
-  background-color: #EFF0F440;
-
-  & button {
-    width: 2rem;
-    height: 2rem;
-
-    background-color: transparent;
-    border: none;
-    border-radius: 1rem;
-
-    &:hover {
-      background-color: #eceef2;
-    }
-    &:hover:active {
-      background-color: #e0e2e6;
-    }
-  }
+  background-color: color-mix(in srgb, var(--floor-color), transparent 25%);
 }
 #close-sidebar-button {
   display: none;
@@ -176,7 +184,7 @@ aside > ul > ul > li {
   border-radius: .5rem;
 
   &.active {
-    background-color: #00000010;
+    background-color: color-mix(in srgb, transparent, var(--text-color) 10%);
   }
 }
 
@@ -219,7 +227,7 @@ footer {
   flex-flow: row nowrap;
   justify-content: space-between;
 
-  color: #555;
+  opacity: 60%;
 
   & p {
     margin: .5rem 0;
@@ -249,9 +257,24 @@ footer {
 #deselect-node-button {
   padding: .75rem;
 
-  background-image: url("../svg/showall-black.svg");
+  background-image: var(--showall-icon);
   background-size: contain;
   background-origin: content-box;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --floor-color: black;
+    --background-color: #17181C;
+    --button-color: #191B1D;
+    --button-hover-color: #2D2F31;
+    --button-click-color: #3c3e40;
+    --text-color: white;
+
+    --showall-icon: url("../svg/showall-white.svg");
+  }
 }

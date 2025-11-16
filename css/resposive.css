@@ -39,7 +39,7 @@
     width: unset;
     height: unset;
 
-    background-color: #EFF0F4;
+    background-color: var(--floor-color);
     backdrop-filter: none;
     border-radius: 2.5rem;
     border-bottom-left-radius: 0;
@@ -57,7 +57,7 @@
     font-size: unset;
   }
   aside > ul > ul {
-    background-color: white;
+    background-color: var(--background-color);
     border-radius: 1rem;
   }
   aside > ul > ul > li {
@@ -67,7 +67,7 @@
     border-radius: 0;
 
     &:not(:first-child) {
-      border-top: 1px solid lightgray;
+      border-top: 1px solid color-mix(in srgb, transparent, var(--text-color) 25%);
     }
 
     &.active {
@@ -113,6 +113,10 @@
     flex-flow: column nowrap;
     justify-content: center;
   }
+
+  /* dialog {
+    border-radius: 2.5rem;
+  } */
 }
 @media only screen and (min-width: 641px) {
   .mobile-only {

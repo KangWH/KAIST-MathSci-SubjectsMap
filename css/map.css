@@ -21,9 +21,11 @@
 
   text-align: left;
 
-  background-color: white;
+  background-color: var(--background-color);
   border: 0 solid #444;
   border-left-width: 4px;
+
+  color: var(--text-color);
 
   &.important {
     padding: calc(.5em - 1px);
@@ -60,7 +62,7 @@
 
 & .subject-arrow {
   fill: transparent;
-  stroke: black;
+  stroke: var(--text-color);
   stroke-width: 1px;
   marker-end: url(#arrow);
   opacity: 0.4;

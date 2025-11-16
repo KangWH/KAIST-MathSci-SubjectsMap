@@ -156,7 +156,7 @@ MainData.prototype.drawMap = function (options) {
     indicator.setAttribute('y', BOX_SEPARATION + UNIT);
     indicator.setAttribute('width', '0.2rem');
     indicator.setAttribute('height', CATEGORY_HEIGHT + UNIT);
-    indicator.setAttribute('fill', 'black');
+    indicator.setAttribute('fill', 'var(--text-color)');
     groupsContainer.append(indicator);
 
     const text = document.createElementNS(SVGNS, 'text');
@@ -164,6 +164,7 @@ MainData.prototype.drawMap = function (options) {
     text.setAttribute('y', (BOX_SEPARATION + CATEGORY_HEIGHT / 2) + UNIT);
     text.setAttribute('dominant-baseline', 'middle');
     text.setAttribute('font-weight', '500');
+    text.setAttribute('fill', 'var(--text-color)');
     text.textContent = string;
     groupsContainer.append(text);
   }

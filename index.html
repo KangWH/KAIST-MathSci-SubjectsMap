@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
     <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/resposive.css" />
     <link rel="stylesheet" href="css/map.css" />
     <link rel="stylesheet" href="css/palette1.css" />
     <link rel="stylesheet" href="css/dialog.css" />
+    <link rel="stylesheet" href="css/resposive.css" />
   </head>
   <body>
     <header>
@@ -30,7 +30,9 @@
     <aside>
       <div class="aside-header desktop-only">
         <div></div>
-        <button id="close-sidebar-button">≡</button>
+        <div class="button-group">
+          <button id="close-sidebar-button">≡</button>
+        </div>
       </div>
       <div class="aside-header mobile-only">
         <div style="width: 3rem;"></div>
@@ -79,7 +81,7 @@
         <svg id="map-container">
           <defs>
             <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="black"></polygon>
+              <polygon points="0 0, 8 3, 0 6" fill="var(--text-color)"></polygon>
             </marker>
           </defs>
           <g id="arrows-container"></g>
@@ -129,7 +131,9 @@
     <dialog id="subject-details-dialog">
       <div class="dialog-header">
         <output class="dialog-header-title" form="subject-details-form" name="subjectTitle">(과목 이름)</output>
-        <button class="dialog-header-close-button">×</button>
+        <div class="button-group">
+          <button class="dialog-header-close-button">×</button>
+        </div>
       </div>
       <form class="dialog-body" id="subject-details-form">
         <div class="field-row">
@@ -161,7 +165,9 @@
     <dialog id="suggestion-dialog">
       <div class="dialog-header">
         <div class="dialog-header-title">의견이 있으십니까?</div>
-        <button class="dialog-header-close-button">×</button>
+        <div class="button-group">
+          <button class="dialog-header-close-button">×</button>
+        </div>
       </div>
       <div class="dialog-body">
         <p>선수 과목에 대한 제안 사항이 있다면 내용을<br />
@@ -174,7 +180,9 @@
     <dialog id="options-dialog">
       <div class="dialog-header">
         <div class="dialog-header-title">설정</div>
-        <button class="dialog-header-close-button">×</button>
+        <div class="button-group">
+          <button class="dialog-header-close-button">×</button>
+        </div>
       </div>
       <form class="dialog-body" id="options-form">
         <div class="field-row">
