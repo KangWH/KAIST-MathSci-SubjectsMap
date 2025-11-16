@@ -13,6 +13,7 @@ input {
 
 button {
   font: inherit;
+  color: inherit;
 }
 
 .button-group {
@@ -240,6 +241,15 @@ footer {
 
   background-color: #007FFF;
   background-image: url("../svg/check-white.svg");
+  background-size: contain;
+  background-origin: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#deselect-node-button {
+  padding: .75rem;
+
+  background-image: url("../svg/showall-black.svg");
   background-size: contain;
   background-origin: content-box;
   background-position: center;
