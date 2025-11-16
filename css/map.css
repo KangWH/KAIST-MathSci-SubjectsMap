@@ -11,9 +11,9 @@
 }
 
 & .subject-box {
-  width: 12rem;
-  height: 3rem;
-  padding: .5rem;
+  width: 12em;
+  height: 3em;
+  padding: .5em;
 
   display: flex;
   flex-flow: column nowrap;
@@ -26,7 +26,7 @@
   border-left-width: 4px;
 
   &.important {
-    padding: calc(.5rem - 1px);
+    padding: calc(.5em - 1px);
     border-width: 1px;
     border-left-width: 4px;
   }
@@ -76,7 +76,7 @@
 }
 
 .compact .subject-box {
-  height: 2rem;
+  height: 2em;
 }
 .compact .subject-text-code,
 .compact .subject-text-supplementary {

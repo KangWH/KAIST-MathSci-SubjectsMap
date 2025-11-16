@@ -10,38 +10,104 @@
     transform: scale(1.1);
   }
 
-  header {
-    height: 4rem;
-  }
-  header > div {
-    & .button-group {
-      border-radius: 1.5rem;
-    }
+  .button-group {
+    border-radius: 1.5rem;
+
     & button {
       width: 3rem;
       height: 3rem;
       
       border-radius: 1.5rem;
     }
+    & input[type="search"] {
+      height: 3rem;
+
+      border-radius: 1.5rem;
+    }
+  }
+
+  header {
+    height: 4rem;
   }
   h1 {
     margin-left: -.5rem;
     padding-block: .875rem;
   }
 
+  aside {
+    inset: 0;
+    width: unset;
+    height: unset;
+
+    background-color: #EFF0F4;
+    backdrop-filter: none;
+    border-radius: 2.5rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .aside-header {
+    height: 5rem;
+    padding: 1rem;
+
+    backdrop-filter: blur(1rem);
+  }
+  aside > ul > li {
+    padding-bottom: .5rem;
+
+    font-size: unset;
+  }
+  aside > ul > ul {
+    background-color: white;
+    border-radius: 1rem;
+  }
+  aside > ul > ul > li {
+    position: relative;
+    padding: 1rem;
+
+    border-radius: 0;
+
+    &:not(:first-child) {
+      border-top: 1px solid lightgray;
+    }
+
+    &.active {
+      background-color: unset;
+    }
+    &.active::after {
+      content: "";
+
+      position: absolute;
+      right: 1rem;
+      margin: -.25rem;
+      width: 1.5rem;
+      height: 1.5rem;
+
+      display: inline-block;
+
+      background-image: url("../svg/check-accent.svg");
+      background-size: contain;
+      background-origin: content-box;
+      background-repeat: no-repeat;
+    }
+  }
+
   main {
     padding-top: 4rem;
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
+  }
+  #map-wrapper {
+    padding-bottom: 3rem;
   }
 
   .subject-box {
-    width: 6rem !important;
+    width: 6em !important;
   }
   .subject-text-supplementary {
     display: none;
   }
 
   footer {
+    bottom: 5rem;
     height: unset;
 
     flex-flow: column nowrap;

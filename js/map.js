@@ -7,7 +7,7 @@ let BOX_HEIGHT = 3;
 let BOX_SEPARATION = window.innerWidth > 640 ? 1 : .7;
 const UNIT = 'em';
 // 단위를 사용할 수 없는 경우 COMP_UNIT_VAL을 배율 값에 곱하여 사용
-const COMP_UNIT_VAL = parseFloat(getComputedStyle(document.documentElement).fontSize);
+let COMP_UNIT_VAL = parseFloat(getComputedStyle(document.getElementById('map-container')).fontSize);
 let BLOCK_WIDTH = 2 * BOX_SEPARATION + BOX_WIDTH;
 let BLOCK_HEIGHT = 2 * BOX_SEPARATION + BOX_HEIGHT;
 let CATEGORY_BLOCK_HEIGHT = BOX_SEPARATION + CATEGORY_HEIGHT;
@@ -197,6 +197,11 @@ MainData.prototype.drawMap = function (options) {
     g.addEventListener('contextmenu', subject.showDetails);
     g.addEventListener('click', () => {
       this.activeNode = code;
+
+      document.getElementById('mobile-ordinary-toolbar').style.display = 'none';
+      document.getElementById('mobile-selected-toolbar').style.display = '';
+      document.getElementById('mobile-search-toolbar').style.display = 'none';
+
       this.showPrerequisites(code)
     });
     g.addEventListener('mouseenter', () => {this.showPrerequisites(code)});

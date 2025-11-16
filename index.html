@@ -20,16 +20,24 @@
         <h1>카이수리맵</h1>
       </div>
       <div>
-        <div class="desktop-only" style="padding-block: .5rem;">2025.11.13.&nbsp;업데이트(베타)</div>
+        <div class="desktop-only" style="padding-block: .5rem;">2025.11.16.&nbsp;업데이트(베타)</div>
         <div class="button-group">
           <button id="suggestion-button">?</button>
           <button id="options-button">&middot;&middot;&middot;</button>
         </div>
       </div>
     </header>
-    <aside class="desktop-only">
-      <div class="aside-header">
+    <aside>
+      <div class="aside-header desktop-only">
+        <div></div>
         <button id="close-sidebar-button">≡</button>
+      </div>
+      <div class="aside-header mobile-only">
+        <div style="width: 3rem;"></div>
+        <div style="font-weight: 700;">필터 및 범례</div>
+        <div class="button-group">
+          <button id="close-filter-button"></button>
+        </div>
       </div>
       <ul>
         <ul>
@@ -84,8 +92,38 @@
         <p><a href="https://github.com/KangWH/KAIST-MathSci-SubjectsMap">GitHub 저장소</a>에서 주의사항을 확인하십시오.</p>
       </footer>
     </main>
-    <div role="toolbar" id="mobile-toolbar" class="mobile-only">
-      <input type="search" placeholder="검색" id="mobile-search-field" />
+    <div style="position: fixed; right: 1rem; bottom: 5rem;" class="button-group vertical">
+      <button id="zoom-in-button">+</button>
+      <button id="zoom-reset-button" class="desktop-only">0</button>
+      <button id="zoom-out-button">-</button>
+    </div>
+    <div role="toolbar" id="mobile-ordinary-toolbar" class="mobile-toolbar mobile-only">
+      <div class="button-group">
+        <button id="mobile-filter-button-1">≡</button>
+      </div>
+      <div class="button-group" style="flex-grow: 1;">
+        <button id="mobile-fake-search-field" style="width: unset; flex: 3rem 1 0; text-align: left; padding-inline: 1rem; color: gray; cursor: text;">🔍 검색</button>
+      </div>
+    </div>
+    <div role="toolbar" id="mobile-search-toolbar" class="mobile-toolbar mobile-only">
+      <div class="button-group" style="flex-grow: 1;">
+        <input type="search" placeholder="🔍 검색" id="mobile-search-field" style="padding-inline: 1rem;" />
+      </div>
+      <div class="button-group">
+        <button id="mobile-search-clear-button">×</button>
+      </div>
+    </div>
+    <div role="toolbar" id="mobile-selected-toolbar" class="mobile-toolbar mobile-only">
+      <div class="button-group">
+        <button id="mobile-filter-button-2">≡</button>
+      </div>
+      <div class="button-group">
+        <button id="deselect-node-button">田</button>
+        <button id="node-details-button">ⓘ</button>
+      </div>
+      <div class="button-group">
+        <button id="mobile-search-button">🔍</button>
+      </div>
     </div>
 
     <dialog id="subject-details-dialog">
@@ -145,6 +183,7 @@
           <label><input type="radio" name="grouping" value="groupbasics" />기초과목 및 학년별 전공</label>
           <label><input type="radio" name="grouping" value="separatebasics" />기초필수, 기초선택 및 학년별 전공</label>
         </div>
+        <hr />
         <div class="field-row">
           <span></span>
           <label><input type="checkbox" name="showgraduate" />대학원 과목 표시 (베타)</label>
