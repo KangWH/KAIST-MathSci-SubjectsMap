@@ -201,8 +201,11 @@ MainData.prototype.drawMap = function (options) {
       document.getElementById('mobile-ordinary-toolbar').style.display = 'none';
       document.getElementById('mobile-selected-toolbar').style.display = '';
       document.getElementById('mobile-search-toolbar').style.display = 'none';
+      document.getElementById('mobile-search-field').value = '';
+      mainData.filter.query = '';
+      mainData.applyFilter();
 
-      this.showPrerequisites(code)
+      this.showPrerequisites(code);
     });
     g.addEventListener('mouseenter', () => {this.showPrerequisites(code)});
     g.addEventListener('mouseleave', this.hidePrerequisites);
