@@ -122,4 +122,9 @@
   .mobile-only {
     display: none !important;
   }
+
+  .aside-header .button-group {
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
