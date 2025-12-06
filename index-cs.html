@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <title>카이수리맵: KAIST 수리과학과 로드맵</title>
+    <title>카이전산맵: KAIST 전산학부 로드맵</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/map.css" />
@@ -17,10 +17,10 @@
         <div class="button-group">
           <button id="open-sidebar-button" class="desktop-only">≡</button>
         </div>
-        <h1>카이수리맵</h1>
+        <h1>카이전산맵</h1>
       </div>
       <div>
-        <div class="desktop-only" style="padding-block: .5rem;">2025.12.06.&nbsp;업데이트(베타)</div>
+        <div class="desktop-only" style="padding-block: .5rem;">2025.11.16.&nbsp;업데이트(베타)</div>
         <div class="button-group">
           <button id="suggestion-button">?</button>
           <button id="options-button">&middot;&middot;&middot;</button>
@@ -65,7 +65,7 @@
         <ul>
           <li>
             <div class="subject-box important" style="height: unset;">
-              <div class="subject-text">7중4택 필수 과목</div>
+              <div class="subject-text">전공필수 과목</div>
             </div>
           </li>
           <li>
@@ -81,7 +81,7 @@
         <svg id="map-container">
           <defs>
             <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <polygon points="0 0, 8 3, 0 6" fill="var(--text-color)"></polygon>
+              <polygon points="0 0, 8 3, 0 6" fill="black"></polygon>
             </marker>
           </defs>
           <g id="arrows-container"></g>
@@ -131,9 +131,7 @@
     <dialog id="subject-details-dialog">
       <div class="dialog-header">
         <output class="dialog-header-title" form="subject-details-form" name="subjectTitle">(과목 이름)</output>
-        <div class="button-group">
-          <button class="dialog-header-close-button">×</button>
-        </div>
+        <button class="dialog-header-close-button">×</button>
       </div>
       <form class="dialog-body" id="subject-details-form">
         <div class="field-row">
@@ -165,9 +163,7 @@
     <dialog id="suggestion-dialog">
       <div class="dialog-header">
         <div class="dialog-header-title">의견이 있으십니까?</div>
-        <div class="button-group">
-          <button class="dialog-header-close-button">×</button>
-        </div>
+        <button class="dialog-header-close-button">×</button>
       </div>
       <div class="dialog-body">
         <p>선수 과목에 대한 제안 사항이 있다면 내용을<br />
@@ -180,9 +176,7 @@
     <dialog id="options-dialog">
       <div class="dialog-header">
         <div class="dialog-header-title">설정</div>
-        <div class="button-group">
-          <button class="dialog-header-close-button">×</button>
-        </div>
+        <button class="dialog-header-close-button">×</button>
       </div>
       <form class="dialog-body" id="options-form">
         <div class="field-row">
@@ -206,7 +200,7 @@
     <script src="js/subject.js"></script>
     <script src="js/map.js"></script>
     <script src="js/options.js"></script>
-    <script src="js/data.js"></script>
+    <script src="js/data-cs.js"></script>
     <script src="js/init.js"></script>
   </body>
 </html>

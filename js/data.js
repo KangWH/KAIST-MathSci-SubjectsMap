@@ -162,10 +162,13 @@ mas40030.setSemester(0, false);
 mainData.addSubject(mas40030);
 
 // 2022년 이후 개설된 적 없음
-// const mas40035 = new Subject('MAS.40035', 전선, '행렬군론', 'Matrix Groups', '3:0:3');
-// mas40035.setCategory(기하위상);
-// mas40035.setFrequency(0);
-// mainData.addSubject(mas40035);
+const mas40035 = new Subject('MAS.40035', 전선, '행렬군론', 'Matrix Groups', '3:0:3');
+mas40035.setCategory(기하위상);
+mas40035.setFrequency(0);
+mas40035.addPrerequisite('MAS.20012');
+mas40035.addPrerequisite('MAS.30011');
+mas40035.addPrerequisite('MAS.30031');
+mainData.addSubject(mas40035);
 
 const mas40040 = new Subject('MAS.40040', 전선, '편미분방정식개론', 'Introduction to Partial Differential Equations', '3:0:3');
 mas40040.setCategory(해석);
@@ -190,7 +193,7 @@ mainData.addSubject(mas40042);
 const mas40043 = new Subject('MAS.40043', 전선, '상미분방정식과 동역학계', 'Ordinary Differential Equations and Dynamical Systems', '3:0:3');
 mas40043.setCategory(해석);
 mas40043.addPrerequisite('MAS.20001');
-mas40043.addPrerequisite('MAS.20041');
+mas40043.addPrerequisite('MAS.20042');
 mas40043.setFrequency(0);
 mainData.addSubject(mas40043);
 
