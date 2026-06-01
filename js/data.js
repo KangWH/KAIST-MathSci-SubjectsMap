@@ -119,7 +119,7 @@ mas30064.setFrequency(2);
 mas30064.setSemester(2, false);
 mainData.addSubject(mas30064);
 
-const mas30065 = new Subject('MAS.30065', 전선, '수치해석학개론', 'Introduction to Numerical Analysis', '3:0:3');
+const mas30065 = new Subject('MAS.30065', 전선, '수치해석학개론', 'Introduction to Numerical Analysis', '3:2:4');
 mas30065.setCategory(응용);
 mas30065.addPrerequisite('MAS.10009');
 mas30065.setSemester(2, false);
